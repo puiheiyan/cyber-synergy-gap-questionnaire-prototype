@@ -1,1 +1,1 @@
-# cyber-synergy-gap-questionnaire-prototype
+# Prototype of the Gap Analysis Questionnaires (Level 1)
