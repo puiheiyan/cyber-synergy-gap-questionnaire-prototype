@@ -34,13 +34,13 @@ import Info from "@mui/icons-material/Info";
                     <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} multiline rows={10} rowsMax={20}/>
                 </div>
                 <div className="back-button-container">
-                    <Link to="/page3">
-                        <Button className="button" variant="contained"> Back </Button>        
+                    <Link to="/page3" style={{ textDecoration: 'none' }}>
+                        <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
                     </Link>
                 </div>
                 <div className="button-container">
-                    <Link to="/page5">
-                        <Button className="button" variant="contained" endIcon={<Send />}> Next </Button>        
+                    <Link to="/page5" style={{ textDecoration: 'none' }}>
+                        <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                     </Link>
                 </div>
             </div>

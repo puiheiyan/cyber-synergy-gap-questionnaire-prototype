@@ -12,8 +12,8 @@ function App() {
         <h1 className="firstPageTitle"> Access Control (AC) </h1>
       </div>
       <div className="button-container">
-        <Link to="/page1"> 
-          <Button variant="contained" endIcon={<Send />}> Start </Button>        
+        <Link to="/page1" style={{ textDecoration: 'none' }}> 
+          <Button variant="outlined" endIcon={<Send />}> <h3>Start</h3> </Button>        
         </Link>
       </div>
     </div>

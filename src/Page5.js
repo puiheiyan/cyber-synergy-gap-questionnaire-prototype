@@ -39,16 +39,16 @@ import Info from "@mui/icons-material/Info";
                     <h1> 
                         Provide screenshot of the privacy and security notices displayed when accessing the system.
                     </h1>
-                    <Button variant="contained" component="label" > Upload File <input type="file" accept="image/*" hidden /> </Button>
+                    <Button className="uploadButton" variant="outlined" component="label" > <h3>Upload File</h3> <input type="file" accept="image/*" hidden /> </Button>
                 </div>
                 <div className="back-button-container">
-                    <Link to="/page4">
-                        <Button className="button" variant="contained"> Back </Button>        
+                    <Link to="/page4" style={{ textDecoration: 'none' }}>
+                        <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
                     </Link>
                 </div>
                 <div className="button-container">
-                    <Link to="/page6">
-                        <Button className="button" variant="contained" endIcon={<Send />}> Next </Button>        
+                    <Link to="/page6" style={{ textDecoration: 'none' }}>
+                        <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                     </Link>
                 </div>
             </div>

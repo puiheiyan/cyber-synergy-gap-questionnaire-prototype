@@ -14,7 +14,7 @@ import Info from "@mui/icons-material/Info";
         seen: !this.state.seen
       });
     };
-  
+    
     render() {
         return (
             <div>
@@ -31,8 +31,8 @@ import Info from "@mui/icons-material/Info";
                     </h1>
                 </div>
                 <div className="back-button-container">
-                    <Link to="/page5">
-                        <Button className="button" variant="contained"> Back </Button>        
+                    <Link to="/page5" style={{ textDecoration: 'none' }}>
+                        <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
                     </Link>
                 </div>
             </div>

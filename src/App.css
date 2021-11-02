@@ -96,3 +96,8 @@ div.infoButton {
   width: 140px;
   font-size: 3rem;
 }
+
+.uploadButton {
+  left: 45%;
+  right: 35%;
+}
