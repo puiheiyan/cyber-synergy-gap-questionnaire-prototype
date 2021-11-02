@@ -4,7 +4,9 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import Start from "./App.js";
+// import Start from "./App.js";
+import Login from "./Login.js";
+import ACMenu from "./App.js";
 import Page1 from "./Page1.js";
 import Page2 from "./Page2.js";
 import Page3 from "./Page3.js";
@@ -16,7 +18,8 @@ const rootElement = document.getElementById("root");
     ReactDOM.render(
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Start} />
+          <Route exact path="/" component={Login} />
+          <Route path="/acmenu" component={ACMenu} />
           <Route path="/page1" component={Page1} />
           <Route path="/page2" component={Page2} />
           <Route path="/page3" component={Page3} />
