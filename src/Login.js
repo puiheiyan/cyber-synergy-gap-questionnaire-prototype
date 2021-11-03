@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import logo from "./images/logo.png";
+import logo from "./resources/images/logo.png";
 import { Link } from 'react-router-dom';
 
 const theme = createTheme();
@@ -17,9 +17,8 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
     console.log({
-      email: data.get('email'),
+      username: data.get('username'),
       password: data.get('password'),
     });
   };
@@ -36,8 +35,8 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-          <img class="login-logo"src={logo} alt="Synergy Logo" />
-          <Typography component="h1" variant="h5">
+          <img className="login-logo"src={logo} alt="Synergy Logo" />
+          <Typography component="h1" variant="h4">
             Assessment Tool
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -45,10 +44,10 @@ export default function Login() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -65,9 +64,12 @@ export default function Login() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            <Button type="submit" fullWidth variant="outlined" sx={{ mt: 3, mb: 2 }}>
+              Sign In
+            </Button>
             <Link to="/acmenu" style={{ textDecoration: 'none' }}> 
-                <Button type="submit" fullWidth variant="outlined" sx={{ mt: 3, mb: 2 }}>
-                Sign In
+                <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                Next
                 </Button>
             </Link>
           </Box>

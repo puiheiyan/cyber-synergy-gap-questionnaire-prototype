@@ -54,17 +54,17 @@ export default class Page1 extends React.Component {
                 </div>
 
                 {/* Back and Next Page Navigation */}
-                 <div className="back-button-container">
-                     <Link to="/" style={{ textDecoration: 'none' }}>
-                         <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
-                     </Link>
-                 </div>
-                 <div className="button-container">
-                     <Link to="/page2" style={{ textDecoration: 'none' }}>
-                         <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
-                     </Link>
-                 </div>
+                <div className="back-button-container">
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
+                    </Link>
+                </div>
+                <div className="button-container">
+                    <Link to="/page2" style={{ textDecoration: 'none' }}>
+                        <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
+                    </Link>
+                </div>
             </div>
-          );
+        );
     }
 }
