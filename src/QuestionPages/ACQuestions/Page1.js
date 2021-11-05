@@ -5,11 +5,13 @@ import Send from '@mui/icons-material/Send';
 import Info from '@mui/icons-material/Info';
 import PopUp from "../../Components/PopUp";
 
+const infoContent = "This contains some information about this three question of first page of access control";
+
 export default class Page1 extends React.Component {
     state = {
       seen: false
     };
-  
+
     togglePop = () => {
       this.setState({
         seen: !this.state.seen
@@ -20,7 +22,7 @@ export default class Page1 extends React.Component {
         return (
             <div>
                 {/* Information of the questions */}
-                {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
+                {this.state.seen ? <PopUp content = {infoContent} toggle={this.togglePop} /> : null}
                 <div className="infoButton">
                     <IconButton color="primary" onClick={this.togglePop}>
                         <Info fontSize="large"/>

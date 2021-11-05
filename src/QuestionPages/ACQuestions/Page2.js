@@ -6,6 +6,8 @@ import { IconButton, TextField } from "@mui/material";
 import Info from "@mui/icons-material/Info";
 import PopUp from "../../Components/PopUp";
 
+const infoContent = "This contains some information about this three question of second page of access control";
+
 export default class Page2 extends React.Component {
     state = {
       seen: false
@@ -21,7 +23,7 @@ export default class Page2 extends React.Component {
         return (
             <div>
                 {/* Information of the questions */}
-                {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
+                {this.state.seen ? <PopUp content = {infoContent} toggle={this.togglePop} /> : null}
                 <div className="infoButton">
                     <IconButton color="primary" onClick={this.togglePop}>
                         <Info fontSize="large"/>

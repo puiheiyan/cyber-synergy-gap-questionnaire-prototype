@@ -16,23 +16,9 @@ code {
   position: fixed;
   top: 40%;
   left: 35%;
-  /* margin-top: -100px; */
   margin-left: 1%; 
   text-align: center;
 }
-
-/* .center {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  border: 5px solid #FFFF00;
-  padding: 10px;
-}
-
-div.firstPageTitle {
-  color: black;
-  font-size: 3rem;
-} */
 
 div.questionContainer {
   top: 5%;
@@ -90,7 +76,7 @@ div.infoButton {
 }
 
 .close:hover {
-  color: black;
+  color: red;
   cursor: pointer;
 }
 
