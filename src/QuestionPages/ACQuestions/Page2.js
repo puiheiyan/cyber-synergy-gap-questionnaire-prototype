@@ -3,10 +3,10 @@ import {Link} from "react-router-dom";
 import Button from '@mui/material/Button';
 import Send from '@mui/icons-material/Send';
 import { IconButton, TextField } from "@mui/material";
-import PopUp from "./Components/PopUp";
 import Info from "@mui/icons-material/Info";
+import PopUp from "../../Components/PopUp";
 
- export default class Page3 extends React.Component {
+export default class Page2 extends React.Component {
     state = {
       seen: false
     };
@@ -29,17 +29,17 @@ import Info from "@mui/icons-material/Info";
                 </div>
                  <div className="questionContainer">
                      <h1> 
-                         How do you verify and control/limit connections to and use of external information systems?
+                         How do you limit information system access to types of transactions and functions that authorized users are permitted to execute? (role, access privileges )
                      </h1>
                      <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} multiline rows={10} rowsMax={20}/>
                  </div>
                  <div className="back-button-container">
-                     <Link to="/page2" style={{ textDecoration: 'none' }}>
+                     <Link to="/ac1" style={{ textDecoration: 'none' }}>
                          <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
                      </Link>
                  </div>
                  <div className="button-container">
-                     <Link to="/page4" style={{ textDecoration: 'none' }}>
+                     <Link to="/ac3" style={{ textDecoration: 'none' }}>
                          <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                      </Link>
                  </div>

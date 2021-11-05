@@ -2,10 +2,10 @@ import React from "react";
 import {Link} from "react-router-dom";
 import { FormControl, FormControlLabel, RadioGroup, Radio, IconButton, Button } from "@mui/material";
 import Send from '@mui/icons-material/Send';
-import PopUp from "./Components/PopUp";
-import Info from "@mui/icons-material/Info";
+import Info from '@mui/icons-material/Info';
+import PopUp from "../../Components/PopUp";
 
- export default class Page5 extends React.Component {
+export default class Page5 extends React.Component {
     state = {
       seen: false
     };
@@ -15,7 +15,7 @@ import Info from "@mui/icons-material/Info";
         seen: !this.state.seen
       });
     };
-  
+    
     render() {
         return (
             <div>
@@ -26,28 +26,38 @@ import Info from "@mui/icons-material/Info";
                         <Info fontSize="large"/>
                     </IconButton>
                 </div>
+
+                {/* Questions of the page */}
                 <div className="questionContainer">
                     <h1> 
-                        Are there any privacy and security noticed identified, consistent, and associated with the specific CUI category?
+                        Is all information system media marked to indicate distribution limitations, handling caveats, 
+                        and applicable security markings?
                     </h1>
                     <FormControl className="FormControl" component="fieldset">
-                        <RadioGroup defaultValue="true" aria-label="gender" name="customized-radios">
+                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
                             <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="No" control={<Radio />} label="No" />
                         </RadioGroup>
                     </FormControl>
                     <h1> 
-                        Provide screenshot of the privacy and security notices displayed when accessing the system.
+                        Are there any conditions where information system media is exempted from these markings?
                     </h1>
-                    <Button className="uploadButton" variant="outlined" component="label" > <h3>Upload File</h3> <input type="file" accept="image/*" hidden /> </Button>
+                    <FormControl className="FormControl" component="fieldset">
+                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
+                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="No" control={<Radio />} label="No" />
+                        </RadioGroup>
+                    </FormControl>    
                 </div>
+
+                {/* Back and Next Page Navigation */}
                 <div className="back-button-container">
-                    <Link to="/page4" style={{ textDecoration: 'none' }}>
+                    <Link to="/mp4" style={{ textDecoration: 'none' }}>
                         <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
                     </Link>
                 </div>
                 <div className="button-container">
-                    <Link to="/page6" style={{ textDecoration: 'none' }}>
+                    <Link to="/pemenu" style={{ textDecoration: 'none' }}>
                         <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                     </Link>
                 </div>

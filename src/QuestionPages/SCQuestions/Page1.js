@@ -1,11 +1,9 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { FormControl, FormControlLabel, RadioGroup, Radio, TextField, IconButton, Button } from "@mui/material";
+import { FormControl, FormControlLabel, RadioGroup, Radio, IconButton, Button } from "@mui/material";
 import Send from '@mui/icons-material/Send';
 import Info from '@mui/icons-material/Info';
-import PopUp from "./Components/PopUp";
-
-
+import PopUp from "../../Components/PopUp";
 
 export default class Page1 extends React.Component {
     state = {
@@ -17,7 +15,7 @@ export default class Page1 extends React.Component {
         seen: !this.state.seen
       });
     };
-  
+    
     render() {
         return (
             <div>
@@ -32,35 +30,33 @@ export default class Page1 extends React.Component {
                 {/* Questions of the page */}
                 <div className="questionContainer">
                     <h1> 
-                        How do you limit information system access to authorized users, 
-                        processes acting on behalf of authorized users, or devices (including other information systems)?
+                        Do you have implement subnetworks for publicly accessible system components that are physically or logically separated from internal networks. (separation of public access from internal user access)
                     </h1>
-                    <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
-
-                    <h1> 
-                        Do you have an SOP defining Roles/Responsiblities of your system access?
-                    </h1>
+                    <h1>[a] publically accessible system components are identified</h1>
                     <FormControl className="FormControl" component="fieldset">
-                        <RadioGroup defaultValue="true" aria-label="gender" name="customized-radios">
+                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
+                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="No" control={<Radio />} label="No" />
+                        </RadioGroup>
+                    </FormControl>
+                    <h1>[b] subnetworks for publicly accessible system components are physically or logically separated from internal networks </h1>
+                    <FormControl className="FormControl" component="fieldset">
+                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
                             <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
                             <FormControlLabel value="No" control={<Radio />} label="No" />
                         </RadioGroup>
                     </FormControl>
 
-                    <h1> 
-                        How are your user accounts Managed or Created?
-                    </h1>
-                    <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
                 </div>
 
                 {/* Back and Next Page Navigation */}
                 <div className="back-button-container">
-                    <Link to="/" style={{ textDecoration: 'none' }}>
+                    <Link to="/scmenu" style={{ textDecoration: 'none' }}>
                         <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
                     </Link>
                 </div>
                 <div className="button-container">
-                    <Link to="/page2" style={{ textDecoration: 'none' }}>
+                    <Link to="/sc2" style={{ textDecoration: 'none' }}>
                         <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                     </Link>
                 </div>

@@ -1,12 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import Button from '@mui/material/Button';
+import { FormControl, FormControlLabel, RadioGroup, Radio, IconButton, Button } from "@mui/material";
 import Send from '@mui/icons-material/Send';
-import { IconButton, TextField } from "@mui/material";
-import PopUp from "./Components/PopUp";
-import Info from "@mui/icons-material/Info";
+import Info from '@mui/icons-material/Info';
+import PopUp from "../../Components/PopUp";
 
- export default class Page4 extends React.Component {
+export default class Page5 extends React.Component {
     state = {
       seen: false
     };
@@ -16,7 +15,7 @@ import Info from "@mui/icons-material/Info";
         seen: !this.state.seen
       });
     };
-  
+    
     render() {
         return (
             <div>
@@ -27,19 +26,28 @@ import Info from "@mui/icons-material/Info";
                         <Info fontSize="large"/>
                     </IconButton>
                 </div>
+
+                {/* Questions of the page */}
                 <div className="questionContainer">
                     <h1> 
-                        How do you control information posted or processed on publicly accessible information systems?
+                        Does the information system allow the use of a temporary password for system logons with an immediate change to a permanent password?
                     </h1>
-                    <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} multiline rows={10} rowsMax={20}/>
+                    <FormControl className="FormControl" component="fieldset">
+                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
+                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="No" control={<Radio />} label="No" />
+                        </RadioGroup>
+                    </FormControl>
                 </div>
+
+                {/* Back and Next Page Navigation */}
                 <div className="back-button-container">
-                    <Link to="/page3" style={{ textDecoration: 'none' }}>
+                    <Link to="/ia4" style={{ textDecoration: 'none' }}>
                         <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
                     </Link>
                 </div>
                 <div className="button-container">
-                    <Link to="/page5" style={{ textDecoration: 'none' }}>
+                    <Link to="/mpmenu" style={{ textDecoration: 'none' }}>
                         <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                     </Link>
                 </div>
