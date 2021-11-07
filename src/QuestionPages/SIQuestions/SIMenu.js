@@ -9,17 +9,17 @@ export default class SIMenu extends React.Component {
       return (
       <div className="firstPage">
         <div className="App">
-          <h1 className="firstPageTitle"> Gap Analysis Questionnaire </h1>
-          <h1 className="firstPageTitle"> System and Information Integrity (SI) </h1>
+          <h1 className="MenuTitle"> Gap Analysis Questionnaire </h1>
+          <h1 className="MenuTitle"> System and Information Integrity (SI) </h1>
         </div>
         <div className="back-button-container">
-          <Link to="/sc5" style={{ textDecoration: 'none' }}>
-            <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
+          <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+            <Button className="button" variant="outlined"> <h3> Back </h3> </Button>        
           </Link>
         </div>
         <div className="button-container">
           <Link to="/si1" style={{ textDecoration: 'none' }}> 
-            <Button variant="outlined" endIcon={<Send />}> <h3>Start</h3> </Button>        
+            <Button variant="outlined" endIcon={<Send />}> <h3> Start </h3> </Button>        
           </Link>
         </div>
       </div>

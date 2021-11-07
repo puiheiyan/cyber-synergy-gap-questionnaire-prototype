@@ -9,12 +9,12 @@ export default class ACMenu extends React.Component {
       return (
       <div className="firstPage">
         <div className="App">
-          <h1 className="firstPageTitle"> Gap Analysis Questionnaire </h1>
-          <h1 className="firstPageTitle"> Access Control (AC) </h1>
+          <h1 className="MenuTitle"> Gap Analysis Questionnaire </h1>
+          <h1 className="MenuTitle"> Access Control (AC) </h1>
         </div>
         
         <div className="back-button-container">
-          <Link to="/" style={{ textDecoration: 'none' }}>
+          <Link to="/dashboard" style={{ textDecoration: 'none' }}>
             <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
           </Link>
         </div>

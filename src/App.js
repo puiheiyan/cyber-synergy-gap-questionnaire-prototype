@@ -9,8 +9,8 @@ import React from 'react';
 //   return (
 //     <div className="firstPage">
 //       <div className="App">
-//         <h1 className="firstPageTitle"> Gap Analysis Questionnaire </h1>
-//         <h1 className="firstPageTitle"> Access Control (AC) </h1>
+//         <h1 className="MenuTitle"> Gap Analysis Questionnaire </h1>
+//         <h1 className="MenuTitle"> Access Control (AC) </h1>
 //       </div>
 //       <div className="button-container">
 //         <Link to="/page1" style={{ textDecoration: 'none' }}> 
@@ -28,8 +28,8 @@ export default class App extends React.Component {
       return (
       <div className="firstPage">
         <div className="App">
-          <h1 className="firstPageTitle"> Dashboard </h1>
-          {/* <h1 className="firstPageTitle"> Access Control (AC) </h1> */}
+          <h1 className="MenuTitle"> Dashboard </h1>
+          {/* <h1 className="MenuTitle"> Access Control (AC) </h1> */}
         </div>
         <div className="button-container">
           <Link to="/ac1" style={{ textDecoration: 'none' }}> 

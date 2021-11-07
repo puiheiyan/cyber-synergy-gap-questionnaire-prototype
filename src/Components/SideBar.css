@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 5;
+}
+  
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+  color: black;
+  z-index: 5;
+}
+
+.menu-bars:hover {
+  color: #60a44c;
+}
+  
+.nav-menu {
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 700ms;
+  z-index: 5;
+}
+  
+.nav-menu.active {
+  width: 20%;
+  left: -3%;
+  transition: 400ms;
+}
+  
+.nav-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+  z-index: 5;
+  background-color: white;
+}
+
+.nav-text a {
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  border-radius: 4px;
+}
+  
+.nav-text a:hover {
+  background-color: #60a44c;
+}
+  
+.nav-menu-items {
+  width: 100%;
+  color: white;
+}
+  
+.navbar-toggle {
+  width: 100%;
+  height: 80px;
+  width: 200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 5;
+}
+
+.navbar-toggle:hover {
+  cursor: pointer;
+  color: #60a44c;
+}
+  
+span {
+  margin-left: 16px;
+}
+

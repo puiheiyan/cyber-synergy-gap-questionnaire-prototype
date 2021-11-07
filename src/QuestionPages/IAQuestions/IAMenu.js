@@ -9,12 +9,12 @@ export default class IAMenu extends React.Component {
       return (
       <div className="firstPage">
         <div className="App">
-          <h1 className="firstPageTitle"> Gap Analysis Questionnaire </h1>
-          <h1 className="firstPageTitle"> Identification and Authentication (IA) </h1>
+          <h1 className="MenuTitle"> Gap Analysis Questionnaire </h1>
+          <h1 className="MenuTitle"> Identification and Authentication (IA) </h1>
         </div>
 
         <div className="back-button-container">
-          <Link to="/ac5" style={{ textDecoration: 'none' }}>
+          <Link to="/dashboard" style={{ textDecoration: 'none' }}>
             <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
           </Link>
         </div>

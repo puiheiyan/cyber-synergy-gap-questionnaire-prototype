@@ -40,6 +40,7 @@ import SIPage2 from "./QuestionPages/SIQuestions/Page2.js";
 import SIPage3 from "./QuestionPages/SIQuestions/Page3.js";
 import SIPage4 from "./QuestionPages/SIQuestions/Page4.js";
 import SIPage5 from "./QuestionPages/SIQuestions/Page5.js";
+import Dashboard from "./Dashboard.js";
 
 
 
@@ -49,7 +50,7 @@ const rootElement = document.getElementById("root");
       // Imported from react-dom-router, use to redirect to different pages of the quiz
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/dashboard" component={Dashboard} /> */}
+          <Route path="/dashboard" component={Dashboard} />
           <Route exact path="/" component={Login} />
           <Route path="/acmenu" component={ACMenu} />
           <Route path="/ac1" component={ACPage1} />

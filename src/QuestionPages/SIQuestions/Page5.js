@@ -67,7 +67,7 @@ export default class Page5 extends React.Component {
                     </Link>
                 </div>
                 <div className="button-container">
-                    <Link to="/Finish" style={{ textDecoration: 'none' }}>
+                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                         <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                     </Link>
                 </div>

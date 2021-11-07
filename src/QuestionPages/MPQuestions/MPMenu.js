@@ -9,11 +9,11 @@ export default class MPMenu extends React.Component {
       return (
       <div className="firstPage">
         <div className="App">
-          <h1 className="firstPageTitle"> Gap Analysis Questionnaire </h1>
-          <h1 className="firstPageTitle"> Meida Protection (MP) </h1>
+          <h1 className="MenuTitle"> Gap Analysis Questionnaire </h1>
+          <h1 className="MenuTitle"> Media Protection (MP) </h1>
         </div>
         <div className="back-button-container">
-          <Link to="/ia5" style={{ textDecoration: 'none' }}>
+          <Link to="/dashboard" style={{ textDecoration: 'none' }}>
             <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
           </Link>
         </div>

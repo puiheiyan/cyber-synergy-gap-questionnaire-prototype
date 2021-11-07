@@ -47,7 +47,7 @@ import Info from "@mui/icons-material/Info";
                     </Link>
                 </div>
                 <div className="button-container">
-                    <Link to="/iamenu" style={{ textDecoration: 'none' }}>
+                    <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                         <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                     </Link>
                 </div>
