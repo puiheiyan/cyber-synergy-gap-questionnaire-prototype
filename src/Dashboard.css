@@ -1,0 +1,20 @@
+.pie-container {
+    padding: 5%;
+    float: left;
+    left: 12%;
+    right: 5%;
+    position: relative;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .progress-bar {
+    margin: 1.7%;
+    border-radius: 20px;
+  }
+  
+  .progress-bar:hover {
+    background-color: #60a44c;
+  }

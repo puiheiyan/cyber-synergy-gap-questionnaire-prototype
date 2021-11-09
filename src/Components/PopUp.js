@@ -1,5 +1,7 @@
+import './PopUp.css';
 import React, { Component } from "react";
 import CancelIcon from '@mui/icons-material/Cancel';
+
 
 export default class PopUp extends Component {
   handleClick = () => {

@@ -1,5 +1,5 @@
 
-import './index.css';
+import './Dashboard.css';
 import React from 'react';
 import SideBar from './Components/SideBar';
 import Pie from './Components/Pie';

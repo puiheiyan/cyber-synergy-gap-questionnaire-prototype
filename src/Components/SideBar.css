@@ -90,3 +90,23 @@ span {
   margin-left: 16px;
 }
 
+.navbar-top {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-family: Helvetica;
+  font-weight: 300;
+}
+
+.navbar__title {
+  margin-right: auto;
+  font-size: 150%;
+  padding: 12px 16px;
+}
+
+.navbar__item {
+  padding: 16px 16px;
+  vertical-align: middle;
+  font-size: 1.4em;
+  font-weight: bold;
+}
