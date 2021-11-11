@@ -1,9 +1,10 @@
 
 import './Dashboard.css';
 import React from 'react';
-import SideBar from './Components/SideBar';
 import Pie from './Components/Pie';
 import { Link } from 'react-router-dom';
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+
 
 const GenerateColorFromPercentage = (percentage) => {
   if (percentage < 15) {
@@ -17,13 +18,45 @@ const GenerateColorFromPercentage = (percentage) => {
   } else {
     return '#66FF00';
   } 
-}
+} 
 
 export default class Dashboard extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      level : 1
+    };
+    this.handleLevel = this.handleLevel.bind(this); 
+  }
+
+  handleLevel(event) {
+    this.setState({ level : event.target.value });
+  }
+
   render() {
       return (
         <>
-        <SideBar />
+        <div className="DropDown">
+          <FormControl sx={{ m: 1, minWidth: 80 }}>
+            <InputLabel id="demo-simple-select-autowidth-label">Level</InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={this.state.level}
+              onChange={this.handleLevel}
+              autoWidth
+              label="Level"
+              defaultValue=""
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={1}> 1 </MenuItem>
+              <MenuItem value={2}> 2 </MenuItem>
+              <MenuItem value={3}> 3 </MenuItem>
+            </Select>
+          </FormControl>
+        </div>
         <div className="pie-container">
           <div className="progress-bar">
             <Link to='/acmenu'>

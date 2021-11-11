@@ -17,7 +17,7 @@ export default class Page1 extends React.Component {
         seen: !this.state.seen
       });
     };
-    
+
     render() {
         return (
             <div>

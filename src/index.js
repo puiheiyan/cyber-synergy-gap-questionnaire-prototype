@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import Login from "./Login.js";
@@ -41,7 +42,7 @@ import SIPage3 from "./QuestionPages/SIQuestions/Page3.js";
 import SIPage4 from "./QuestionPages/SIQuestions/Page4.js";
 import SIPage5 from "./QuestionPages/SIQuestions/Page5.js";
 import Dashboard from "./Dashboard.js";
-
+import SideBar from './Components/SideBar';
 
 
 
@@ -49,6 +50,7 @@ const rootElement = document.getElementById("root");
     ReactDOM.render(
       // Imported from react-dom-router, use to redirect to different pages of the quiz
       <BrowserRouter>
+        <SideBar/>
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
           <Route exact path="/" component={Login} />
