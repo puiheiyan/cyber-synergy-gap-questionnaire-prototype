@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 
+
 const GenerateColorFromPercentage = (percentage) => {
   if (percentage < 15) {
     return '#FF0000';
@@ -18,7 +19,7 @@ const GenerateColorFromPercentage = (percentage) => {
   } else {
     return '#66FF00';
   } 
-} 
+}
 
 export default class Dashboard extends React.Component {
   constructor() {
@@ -36,21 +37,17 @@ export default class Dashboard extends React.Component {
   render() {
       return (
         <>
+        {/* Level Dropdown Menu */}
         <div className="DropDown">
-          <FormControl sx={{ m: 1, minWidth: 80 }}>
-            <InputLabel id="demo-simple-select-autowidth-label">Level</InputLabel>
+          <FormControl sx={{ minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-label">Level</InputLabel>
             <Select
-              labelId="demo-simple-select-autowidth-label"
-              id="demo-simple-select-autowidth"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
               value={this.state.level}
               onChange={this.handleLevel}
-              autoWidth
               label="Level"
-              defaultValue=""
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               <MenuItem value={1}> 1 </MenuItem>
               <MenuItem value={2}> 2 </MenuItem>
               <MenuItem value={3}> 3 </MenuItem>

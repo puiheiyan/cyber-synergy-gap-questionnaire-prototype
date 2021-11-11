@@ -1,27 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+
 .DropDown {
   position: absolute;
   right: 8%;
   top: 8%;
+  width: 100;
 }
 
+.DropDownItem {
+  font-family: 'Open Sans', sans-serif;
+}
 
 .pie-container {
-    padding: 5%;
-    float: left;
-    left: 12%;
-    right: 5%;
-    position: relative;
-    display: flex;
-    text-align: center;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  padding: 5%;
+  float: left;
+  left: 12%;
+  right: 5%;
+  position: relative;
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
   
-  .progress-bar {
-    margin: 1.7%;
-    border-radius: 20px;
-  }
+.progress-bar {
+  margin: 1.7%;
+  border-radius: 20px;
+}
   
-  .progress-bar:hover {
-    background-color: #60a44c;
-  }
+.progress-bar:hover {
+  background-color: #60a44c;
+}
+
