@@ -7,7 +7,7 @@ const cleanPercentage = (percentage) => {
 };
 
 const Circle = ({ colour, pct }) => {
-  const r = 70;
+  const r = 90;
   const circ = 2 * Math.PI * r;
   const strokePct = ((100 - pct) * circ) / 100;
   return (
@@ -17,10 +17,9 @@ const Circle = ({ colour, pct }) => {
       cy={100}
       fill="transparent"
       stroke={strokePct !== circ ? colour : ""} // remove colour as 0% sets full circumference
-      strokeWidth={"2rem"}
+      strokeWidth={"0.3rem"}
       strokeDasharray={circ}
       strokeDashoffset={pct ? strokePct : 0}
-      strokeLinecap="round"
     ></circle>
   );
 };
@@ -43,8 +42,8 @@ const Pie = ({ percentage, colour }) => {
   const pct = cleanPercentage(percentage);
   return (
     <svg width={200} height={200}>
-      <g transform={`rotate(-90 ${"100 100"})`}>
-        <Circle colour="lightgrey" />
+      <g transform={`rotate(-85 ${"100 100"})`}>
+        <Circle colour="dimgrey" />
         <Circle colour={colour} pct={pct} />
       </g>
       <Text percentage={pct} />

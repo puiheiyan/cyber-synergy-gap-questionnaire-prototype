@@ -1,49 +1,92 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import Button from '@mui/material/Button';
+import { TextField, IconButton, Button } from "@mui/material";
 import Send from '@mui/icons-material/Send';
-import { IconButton, TextField } from "@mui/material";
-import Info from "@mui/icons-material/Info";
+import Info from '@mui/icons-material/Info';
 import PopUp from "../../Components/PopUp";
+import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
-export default class Page2 extends React.Component {
-    state = {
-      seen: false
-    };
+export function SIPage2() {
+    const [seen, setSeen] = useState(false);
   
-    togglePop = () => {
-      this.setState({
-        seen: !this.state.seen
-      });
+    const togglePop = () => {
+      setSeen(!seen)
     };
-  
-    render() {
-        return (
-            <div>
-                {/* Information of the questions */}
-                {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
-                <div className="infoButton">
-                    <IconButton color="primary" onClick={this.togglePop}>
-                        <Info fontSize="large"/>
-                    </IconButton>
-                </div>
-                 <div className="questionContainer">
-                     <h1> 
-                        How do you provide protection from malicious code at appropriate locations within organizational information systems. (Scans, with which product?)
-                     </h1>
-                     <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} multiline rows={10} rowsMax={20}/>
-                 </div>
-                 <div className="back-button-container">
-                     <Link to="/si1" style={{ textDecoration: 'none' }}>
-                         <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
-                     </Link>
-                 </div>
-                 <div className="button-container">
-                     <Link to="/si3" style={{ textDecoration: 'none' }}>
-                         <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
-                     </Link>
-                 </div>
-            </div>
-        );
+
+    const onChange = () => {
+
     }
+    
+    return (
+        <div>
+            {/* Information of the questions */}
+            {seen ? <PopUp toggle={togglePop} /> : null}
+            <div className="infoButton">
+                <IconButton color="primary" onClick={togglePop}>
+                    <Info fontSize="large"/>
+                </IconButton>
+            </div>
+
+            {/*Top part to show what type of question is being asked*/}
+
+            <div className="top">
+                <h1>System and Information Integrity Questions</h1>
+            </div>
+
+            {/* Questions of the page */}
+            <div className="questionContainer">
+                <h1> 
+                    [SIQ4] Do you receive an update notification for malicious code protection mechanisms?
+                </h1>
+                <RadioGroup onChange={ onChange } horizontal>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                        <h3> Yes </h3>
+                    </ReversedRadioButton>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                        <h3> No  </h3>
+                    </ReversedRadioButton>
+                </RadioGroup>
+                
+                <h1> 
+                    [SIQ5] Do you perform periodic scans of the information system
+                </h1>
+                <RadioGroup onChange={ onChange } horizontal>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                        <h3> Yes </h3>
+                    </ReversedRadioButton>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                        <h3> No </h3>
+                    </ReversedRadioButton>
+                </RadioGroup>
+                <h1> 
+                    [SIQ5.1] If Yes, how often?
+                </h1>
+                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
+                
+                <h1> 
+                    [SIQ5.2] If yes, is this automatic?
+                </h1>
+                <RadioGroup onChange={ onChange } horizontal>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                        <h3> Yes </h3>
+                    </ReversedRadioButton>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                        <h3> No </h3>
+                    </ReversedRadioButton>
+                </RadioGroup>
+            </div>
+
+            {/* Back and Next Page Navigation */}
+            <div className="back-button-container">
+                <Link to="/si1" style={{ textDecoration: 'none' }}>
+                    <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
+                </Link>
+            </div>
+            <div className="button-container">
+                <Link to="/si3" style={{ textDecoration: 'none' }}>
+                    <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
+                </Link>
+            </div>
+        </div>
+    );
 }

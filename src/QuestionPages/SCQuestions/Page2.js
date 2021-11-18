@@ -1,86 +1,64 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import { FormControl, FormControlLabel, RadioGroup, Radio, TextField, IconButton, Button } from "@mui/material";
+import { IconButton, Button } from "@mui/material";
 import Send from '@mui/icons-material/Send';
 import Info from '@mui/icons-material/Info';
 import PopUp from "../../Components/PopUp";
+import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
-export default class Page2 extends React.Component {
-    state = {
-      seen: false
-    };
+export function SCPage2() {
+    const [seen, setSeen] = useState(false);
   
-    togglePop = () => {
-      this.setState({
-        seen: !this.state.seen
-      });
+    const togglePop = () => {
+      setSeen(!seen)
     };
-    
-    render() {
-        return (
-            <div>
-                {/* Information of the questions */}
-                {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
-                <div className="infoButton">
-                    <IconButton color="primary" onClick={this.togglePop}>
-                        <Info fontSize="large"/>
-                    </IconButton>
-                </div>
 
-                {/* Questions of the page */}
-                <div className="questionContainer">
-                    <h1> 
-                        Are there any collaborative computing devices in your organization?
-                    </h1>
-                    <FormControl className="FormControl" component="fieldset">
-                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
-                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="No" control={<Radio />} label="No" />
-                        </RadioGroup>
-                    </FormControl>
-                    <h1> 
-                        Is remote access allowed on any of these devices?
-                    </h1>
-                    <FormControl className="FormControl" component="fieldset">
-                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
-                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="No" control={<Radio />} label="No" />
-                        </RadioGroup>
-                    </FormControl>
-
-                    <h1>
-                        If there is, how is this handled?
-                    </h1>
-                    <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
-
-                    <h1> 
-                        Are collaborative computing devices physically disconnected upon completion of their session?
-                    </h1>
-                    <FormControl className="FormControl" component="fieldset">
-                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
-                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="No" control={<Radio />} label="No" />
-                        </RadioGroup>
-                    </FormControl>
-
-                    <h1>
-                        What areas of your operating space are collaborative computing devices prohibited?
-                    </h1>
-                    <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
-                </div>
-
-                {/* Back and Next Page Navigation */}
-                <div className="back-button-container">
-                    <Link to="/sc1" style={{ textDecoration: 'none' }}>
-                        <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
-                    </Link>
-                </div>
-                <div className="button-container">
-                    <Link to="/sc3" style={{ textDecoration: 'none' }}>
-                        <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
-                    </Link>
-                </div>
-            </div>
-        );
+    const onChange = () => {
+        
     }
+    
+    return (
+        <div>
+            {/* Information of the questions */}
+            {seen ? <PopUp toggle={togglePop} /> : null}
+            <div className="infoButton">
+                <IconButton color="primary" onClick={togglePop}>
+                    <Info fontSize="large"/>
+                </IconButton>
+            </div>
+
+            {/*Top part to show what type of question is being asked*/}
+
+            <div className="top">
+                <h1>System and Communications Protection Questions</h1>
+            </div>
+
+            {/* Questions of the page */}
+            <div className="questionContainer">
+                <h1> 
+                    [SCQ3] Do you have implemented subnetworks for publicly accessible system components that are physically or logically separated from internal networks (separation of public access from internal user access)
+                </h1>
+                <RadioGroup onChange={ onChange } horizontal>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
+                        <h3> Publicly accessible system components are identified </h3>
+                    </ReversedRadioButton>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="b">
+                        <h3> Not identified  </h3>
+                    </ReversedRadioButton>
+                </RadioGroup>
+            </div>
+
+            {/* Back and Next Page Navigation */}
+            <div className="back-button-container">
+                <Link to="/sc1" style={{ textDecoration: 'none' }}>
+                    <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
+                </Link>
+            </div>
+            <div className="button-container">
+                <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                    <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
+                </Link>
+            </div>
+        </div>
+    );
 }

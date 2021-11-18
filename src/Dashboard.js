@@ -11,13 +11,15 @@ const GenerateColorFromPercentage = (percentage) => {
   if (percentage < 15) {
     return '#FF0000';
   } else if (percentage < 35) {
-    return '#FFA500';
+    return '#FFAB35';
   }  else if (percentage < 50) {
-    return '#FFFF00';
-  }  else if (percentage < 75) {
-    return '#90EE90';
+    return '#CCC72B';
+  }  else if (percentage < 70) {
+    return '#AAFF00';
+  }  else if (percentage < 85) {
+    return '#4DE800';
   } else {
-    return '#66FF00';
+    return '#47D13D';
   } 
 }
 
@@ -87,7 +89,7 @@ export default class Dashboard extends React.Component {
           </div>
           <div className="progress-bar">
             <Link to='/simenu'>
-              <Pie percentage={8} colour={GenerateColorFromPercentage(8)} />
+              <Pie percentage={32} colour={GenerateColorFromPercentage(32)} />
             </Link>
             <h1><b> SI </b></h1>
           </div>

@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Shippori+Antique&display=swap');
 
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -25,7 +25,7 @@ code {
 }
 
 div.questionContainer {
-  top: 5%;
+  top: 10%;
   left: 15%;
   right: 15%;
   height: 80%; 
@@ -83,4 +83,21 @@ div.infoButton {
 
 .login-logo {
   height: 100px;
+}
+
+.optionStyling {
+  color: black;
+}
+
+.questionTitles {
+  position: relative;
+  left: 5%;
+}
+
+div.top {
+  top: 5%;
+  left: 15%;
+  right: 15%;
+  position: absolute;
+  text-align: center;
 }

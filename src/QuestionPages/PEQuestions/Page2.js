@@ -1,57 +1,57 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import { FormControl, FormControlLabel, RadioGroup, Radio, IconButton, Button } from "@mui/material";
+import { TextField, IconButton, Button } from "@mui/material";
 import Send from '@mui/icons-material/Send';
 import Info from '@mui/icons-material/Info';
 import PopUp from "../../Components/PopUp";
+import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
-export default class Page2 extends React.Component {
-    state = {
-      seen: false
-    };
+export function PEPage2() {
+    const [seen, setSeen] = useState(false);
   
-    togglePop = () => {
-      this.setState({
-        seen: !this.state.seen
-      });
+    const togglePop = () => {
+      setSeen(!seen)
     };
-    
-    render() {
-        return (
-            <div>
-                {/* Information of the questions */}
-                {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
-                <div className="infoButton">
-                    <IconButton color="primary" onClick={this.togglePop}>
-                        <Info fontSize="large"/>
-                    </IconButton>
-                </div>
 
-                {/* Questions of the page */}
-                <div className="questionContainer">
-                    <h1> 
-                        For visitors entering your workplace do you provide escorts are there activity and access monitored at all times?
-                    </h1>
-                    <FormControl className="FormControl" component="fieldset">
-                        <RadioGroup defaultValue="Yes" aria-label="radio" name="customized-radios">
-                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-                            <FormControlLabel value="No" control={<Radio />} label="No" />
-                        </RadioGroup>
-                    </FormControl>
-                </div>
+    const onChange = () => {
 
-                {/* Back and Next Page Navigation */}
-                <div className="back-button-container">
-                    <Link to="/pe1" style={{ textDecoration: 'none' }}>
-                        <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
-                    </Link>
-                </div>
-                <div className="button-container">
-                    <Link to="/pe3" style={{ textDecoration: 'none' }}>
-                        <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
-                    </Link>
-                </div>
-            </div>
-        );
     }
+
+    return (
+        <div>
+            {/* Information of the questions */}
+            {seen ? <PopUp toggle={togglePop} /> : null}
+            <div className="infoButton">
+                <IconButton color="primary" onClick={togglePop}>
+                    <Info fontSize="large"/>
+                </IconButton>
+            </div>
+
+            {/*Top part to show what type of question is being asked*/}
+
+            <div className="top">
+                <h1>Physical Protection Questions</h1>
+            </div>
+
+            {/* Questions of the page */}
+            <div className="questionContainer">
+                <h1> 
+                    How do you limit information system access to types of transactions and functions that authorized users are permitted to execute? (role, access privileges )
+                </h1>
+                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} multiline rows={10} rowsMax={20}/>
+            </div>
+
+            {/* Back and Next Page Navigation */}
+            <div className="back-button-container">
+                <Link to="/pe1" style={{ textDecoration: 'none' }}>
+                    <Button className="button" variant="outlined"> <h3>Back</h3> </Button>        
+                </Link>
+            </div>
+            <div className="button-container">
+                <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+                    <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
+                </Link>
+            </div>
+        </div>
+    );
 }
