@@ -8,13 +8,22 @@ import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
 export function ACPage4() {
     const [seen, setSeen] = useState(false);
+    const [q4, setQ4] = useState("");
+    const [q41, setQ41] = useState("");
+    const [q42, setQ42] = useState("");
   
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-        
+    const onChangeQ4 = (e) => {
+        setQ4(e);
+    }
+    const onChangeQ41 = (e) => {
+        setQ41(e);
+    }
+    const onChangeQ42 = (e) => {
+        setQ42(e);
     }
     
     return (
@@ -35,10 +44,10 @@ export function ACPage4() {
 
             {/* Questions of the page */}
             <div className="questionContainer">
-                <h1> 
-                    [ACQ4] How do you control information posted or processed on publicly accessible information systems?
+                <h1 className="questionPrompt"> 
+                    4. How do you control information posted or processed on publicly accessible information systems?
                 </h1>
-                <RadioGroup onChange={ onChange } horizontal>
+                <RadioGroup onChange={ onChangeQ4 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
                         <h3> It is not controlled </h3>
                     </ReversedRadioButton>
@@ -47,29 +56,34 @@ export function ACPage4() {
                     </ReversedRadioButton>
                 </RadioGroup>
 
-                <h1> 
-                    [ACQ4.1] If you chose (b) in [ACQ4], Are procedures in place for these individuals to verify that the contents of the post do not contain CUI?
-                </h1>
-                <RadioGroup onChange={ onChange } horizontal>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
-                        <h3> Yes </h3>
-                    </ReversedRadioButton>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
-                        <h3> No  </h3>
-                    </ReversedRadioButton>
-                </RadioGroup>
+                {q4 === "b" ?
+                <div>
+                    <h1 className="questionPrompt"> 
+                        4.1 If you chose (b) in Question 4, Are procedures in place for these individuals to verify that the contents of the post do not contain CUI?
+                    </h1>
+                    <RadioGroup onChange={ onChangeQ41 } horizontal>
+                        <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                            <h3> Yes </h3>
+                        </ReversedRadioButton>
+                        <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                            <h3> No  </h3>
+                        </ReversedRadioButton>
+                    </RadioGroup>
 
-                <h1> 
-                    [ACQ4.2] If you chose (b) in [ACQ4], If CUI is posted, are there procedures in place to handle its removal and address its posting?
-                </h1>
-                <RadioGroup onChange={ onChange } horizontal>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
-                        <h3> Yes </h3>
-                    </ReversedRadioButton>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
-                        <h3> No  </h3>
-                    </ReversedRadioButton>
-                </RadioGroup>
+                    <h1 className="questionPrompt"> 
+                        4.2 If you chose (b) in Question 4, If CUI is posted, are there procedures in place to handle its removal and address its posting?
+                    </h1>
+                    <RadioGroup onChange={ onChangeQ42 } horizontal>
+                        <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                            <h3> Yes </h3>
+                        </ReversedRadioButton>
+                        <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                            <h3> No  </h3>
+                        </ReversedRadioButton>
+                    </RadioGroup>
+                </div>
+                : null
+                }
             </div>
 
             {/* Back and Next Page Navigation */}

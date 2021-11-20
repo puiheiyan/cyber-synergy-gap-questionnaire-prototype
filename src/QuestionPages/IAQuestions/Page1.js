@@ -8,13 +8,22 @@ import { RadioGroup as RadioGroupButton, ReversedRadioButton } from 'react-radio
 
 export function IAPage1() {
     const [seen, setSeen] = useState(false);
+    const [q1, setQ1] = useState("");
+    const [q2, setQ2] = useState("");
+    const [q3, setQ3] = useState("");
   
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-
+    const onChangeQ1 = (e) => {
+        setQ1(e);
+    }
+    const onChangeQ2 = (e) => {
+        setQ2(e.target.value);
+    }
+    const onChangeQ3 = (e) => {
+        setQ3(e.target.value);
     }
     
     return (
@@ -35,10 +44,10 @@ export function IAPage1() {
 
             {/* Questions of the page */}
             <div className="questionContainer">
-                <h1> 
-                    [ACQ1] Which of the following are identified by your system?
+                <h1 className="questionPrompt"> 
+                    1. Which of the following are identified by your system?
                 </h1>
-                <RadioGroupButton onChange={ onChange } horizontal>
+                <RadioGroupButton onChange={ onChangeQ1 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
                         <h3> Internal devices </h3>
                     </ReversedRadioButton>
@@ -47,15 +56,15 @@ export function IAPage1() {
                     </ReversedRadioButton>
                 </RadioGroupButton>
 
-                <h1> 
-                    [ACQ2] How are users in your organization uniquely identified?
+                <h1 className="questionPrompt"> 
+                    2. How are users in your organization uniquely identified?
                 </h1>
-                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
+                <TextField onChange={onChangeQ2} margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
 
-                <h1>
-                    [ACQ3] What device types in the system require authentication before establishing connection to your system?
+                <h1 className="questionPrompt">
+                    3. What device types in the system require authentication before establishing connection to your system?
                 </h1>
-                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
+                <TextField onChange={onChangeQ3} margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
             </div>
 
             {/* Back and Next Page Navigation */}

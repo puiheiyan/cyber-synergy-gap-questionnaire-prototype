@@ -8,13 +8,14 @@ import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
 export function SCPage2() {
     const [seen, setSeen] = useState(false);
-  
+    const [q3, setQ3] = useState("");
+    
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-        
+    const onChange = (e) => {
+        setQ3(e);
     }
     
     return (
@@ -36,7 +37,7 @@ export function SCPage2() {
             {/* Questions of the page */}
             <div className="questionContainer">
                 <h1> 
-                    [SCQ3] Do you have implemented subnetworks for publicly accessible system components that are physically or logically separated from internal networks (separation of public access from internal user access)
+                    3. Do you have implemented subnetworks for publicly accessible system components that are physically or logically separated from internal networks (separation of public access from internal user access)
                 </h1>
                 <RadioGroup onChange={ onChange } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">

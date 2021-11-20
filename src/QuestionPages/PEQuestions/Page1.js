@@ -5,16 +5,31 @@ import Send from '@mui/icons-material/Send';
 import Info from '@mui/icons-material/Info';
 import PopUp from "../../Components/PopUp";
 import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
+import { set } from "react-hook-form";
 
 export function PEPage1() {
     const [seen, setSeen] = useState(false);
-  
+    const [q1, setQ1] = useState("");
+    const [q2, setQ2] = useState("");
+    const [q3, setQ3] = useState("");
+    const [q31, setQ31] = useState("");
+
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-
+    const onChangeQ1 = (e) => {
+        setQ1(e.target.value);
+    }
+    
+    const onChangeQ2 = (e) => {
+        setQ2(e);
+    }
+    const onChangeQ3 = (e) => {
+        setQ3(e);
+    }
+    const onChangeQ31 = (e) => {
+        setQ31(e.target.value);
     }
     
     return (
@@ -35,15 +50,15 @@ export function PEPage1() {
 
             {/* Questions of the page */}
             <div className="questionContainer">
-                <h1> 
-                    [PEQ1] Do you have mechanism in place to limit physical access to organizational information systems, equipment, and the respective operating environments to authorized individuals? If so what are they?
+                <h1 className="questionPrompt"> 
+                    1. Do you have mechanism in place to limit physical access to organizational information systems, equipment, and the respective operating environments to authorized individuals? If so what are they?
                 </h1>
-                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
+                <TextField onChange={ onChangeQ1 } margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
                 
-                <h1> 
-                    [PEQ2] For visitors entering your workplace do you provide escorts and are their activity and access monitored at all times?
+                <h1 className="questionPrompt"> 
+                    2. For visitors entering your workplace do you provide escorts and are their activity and access monitored at all times?
                 </h1>
-                <RadioGroup onChange={ onChange } horizontal>
+                <RadioGroup onChange={ onChangeQ2 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
                         <h3> Yes </h3>
                     </ReversedRadioButton>
@@ -52,10 +67,10 @@ export function PEPage1() {
                     </ReversedRadioButton>
                 </RadioGroup>
                 
-                <h1> 
-                    [PEQ3] Do you maintain a visitor Log and is it updated and maintained regularly? (may need document)
+                <h1 className="questionPrompt"> 
+                    3. Do you maintain a visitor Log and is it updated and maintained regularly? (may need document)
                 </h1>
-                <RadioGroup onChange={ onChange } horizontal>
+                <RadioGroup onChange={ onChangeQ3 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
                         <h3> Yes </h3>
                     </ReversedRadioButton>
@@ -64,10 +79,17 @@ export function PEPage1() {
                     </ReversedRadioButton>
                 </RadioGroup>
                 
-                <h1> 
-                    [PEQ3.1] If you answered yes on [PEQ3], please provide documents below:
-                </h1>
-                <Button className="uploadButton" variant="outlined" component="label" > <h3>Upload File</h3> <input type="file" accept="image/*,.pdf" hidden /> </Button>
+                {
+                    q3 === "yes" ?
+                    <div>
+                        <h1 className="questionPrompt"> 
+                            3.1. If you answered yes on Question 3, Please provide documents below:
+                        </h1>
+                        <Button onChange={ onChangeQ31 } className="uploadButton" variant="outlined" component="label" > <h3>Upload File</h3> <input type="file" accept="image/*,.pdf" hidden /> </Button>
+                    </div>
+                    : null
+                }
+                
 
             </div>
 

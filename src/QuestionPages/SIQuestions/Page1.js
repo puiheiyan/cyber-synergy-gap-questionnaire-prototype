@@ -4,17 +4,28 @@ import { TextField, IconButton, Button } from "@mui/material";
 import Send from '@mui/icons-material/Send';
 import Info from '@mui/icons-material/Info';
 import PopUp from "../../Components/PopUp";
-import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
 export function SIPage1() {
     const [seen, setSeen] = useState(false);
-  
+    const [q1, setQ1] = useState('');
+    const [q2, setQ2] = useState('');
+    const [q3, setQ3] = useState('');
+    
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
 
+    const onChangeQ1 = (e) => {
+        setQ1(e.target.value);
+    }
+    
+    const onChangeQ2 = (e) => {
+        setQ2(e.target.value);
+    }
+    
+    const onChangeQ3 = (e) => {
+        setQ3(e.target.value);
     }
     
     return (
@@ -36,19 +47,19 @@ export function SIPage1() {
             {/* Questions of the page */}
             <div className="questionContainer">
                 <h1> 
-                    [SIQ1] How do you identify, report and correct information system flaws in a timely manner?
+                    1. How do you identify, report and correct information system flaws in a timely manner?
                 </h1>
-                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
+                <TextField onChange={ onChangeQ1 } margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
                 
                 <h1> 
-                    [SIQ2] How do you provide protection from malicious code at appropriate locations within organizational information systems (Scans, with which product)?
+                    2. How do you provide protection from malicious code at appropriate locations within organizational information systems (Scans, with which product)?
                 </h1>
-                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
+                <TextField onChange={ onChangeQ2 } margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
                 
                 <h1> 
-                    [SIQ3] How do you update malicious code protection mechanisms when new releases are available?
+                    3. How do you update malicious code protection mechanisms when new releases are available?
                 </h1>
-                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
+                <TextField onChange={ onChangeQ3 } margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
 
             </div>
 

@@ -4,6 +4,7 @@ import React from 'react';
 import Pie from './Components/Pie';
 import { Link } from 'react-router-dom';
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import Button from '@mui/material/Button';
 
 
 
@@ -94,6 +95,9 @@ export default class Dashboard extends React.Component {
             <h1><b> SI </b></h1>
           </div>
         </div>
+        <Link to="/admin">
+          <Button>Go to admin page</Button>
+        </Link>
       </>
       );
   }

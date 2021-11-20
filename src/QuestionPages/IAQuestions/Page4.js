@@ -8,13 +8,19 @@ import { RadioGroup as RadioGroupButton, ReversedRadioButton } from 'react-radio
 
 export function IAPage4() {
     const [seen, setSeen] = useState(false);
-  
+    const [q8, setQ8] = useState("");
+    const [q81, setQ81] = useState("");
+
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-
+    const onChangeQ8 = (e) => {
+        setQ8(e);
+    }
+    
+    const onChangeQ81 = (e) => {
+        setQ81(e);
     }
     
 
@@ -36,10 +42,10 @@ export function IAPage4() {
 
             {/* Questions of the page */}
             <div className="questionContainer">
-                <h1> 
-                    [ACQ8] Do you have any device external or internal accessing your system?
+                <h1 className="questionPrompt"> 
+                    8. Do you have any device external or internal accessing your system?
                 </h1>
-                <RadioGroupButton onChange={ onChange } horizontal>
+                <RadioGroupButton onChange={ onChangeQ8 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
                         <h2> Yes </h2>
                     </ReversedRadioButton>
@@ -48,17 +54,23 @@ export function IAPage4() {
                     </ReversedRadioButton>
                 </RadioGroupButton>
                 
-                <h1> 
-                    [ACQ8.1] If you answered yes on [ACQ8], are these devices authenticated prior to being given system access?
-                </h1>
-                <RadioGroupButton onChange={ onChange } horizontal>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
-                        <h2> Yes </h2>
-                    </ReversedRadioButton>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
-                        <h2> No  </h2>
-                    </ReversedRadioButton>
-                </RadioGroupButton>
+                { q8 === "yes" ?
+                    <div>
+                    <h1 className="questionPrompt"> 
+                        8.1. If you answered yes on Question 8, are these devices authenticated prior to being given system access?
+                    </h1>
+                    <RadioGroupButton onChange={ onChangeQ81 } horizontal>
+                        <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                            <h2> Yes </h2>
+                        </ReversedRadioButton>
+                        <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                            <h2> No  </h2>
+                        </ReversedRadioButton>
+                    </RadioGroupButton>
+                    </div>
+                    : null
+                }
+                
             </div>
 
             {/* Back and Next Page Navigation */}

@@ -8,13 +8,25 @@ import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
 export function SIPage2() {
     const [seen, setSeen] = useState(false);
-  
+    const [q4, setQ4] = useState("");
+    const [q5, setQ5] = useState("");
+    const [q51, setQ51] = useState("");
+    const [q52, setQ52] = useState("");
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-
+    const onChangeQ4 = (e) => {
+        setQ4(e);
+    }
+    const onChangeQ5 = (e) => {
+        setQ5(e);
+    }
+    const onChangeQ51 = (e) => {
+        setQ51(e.target.value);
+    }
+    const onChangeQ52 = (e) => {
+        setQ52(e);
     }
     
     return (
@@ -36,9 +48,9 @@ export function SIPage2() {
             {/* Questions of the page */}
             <div className="questionContainer">
                 <h1> 
-                    [SIQ4] Do you receive an update notification for malicious code protection mechanisms?
+                    4. Do you receive an update notification for malicious code protection mechanisms?
                 </h1>
-                <RadioGroup onChange={ onChange } horizontal>
+                <RadioGroup onChange={ onChangeQ4 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
                         <h3> Yes </h3>
                     </ReversedRadioButton>
@@ -48,9 +60,9 @@ export function SIPage2() {
                 </RadioGroup>
                 
                 <h1> 
-                    [SIQ5] Do you perform periodic scans of the information system
+                    5. Do you perform periodic scans of the information system
                 </h1>
-                <RadioGroup onChange={ onChange } horizontal>
+                <RadioGroup onChange={ onChangeQ5 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
                         <h3> Yes </h3>
                     </ReversedRadioButton>
@@ -58,22 +70,28 @@ export function SIPage2() {
                         <h3> No </h3>
                     </ReversedRadioButton>
                 </RadioGroup>
-                <h1> 
-                    [SIQ5.1] If Yes, how often?
-                </h1>
-                <TextField margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
-                
-                <h1> 
-                    [SIQ5.2] If yes, is this automatic?
-                </h1>
-                <RadioGroup onChange={ onChange } horizontal>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
-                        <h3> Yes </h3>
-                    </ReversedRadioButton>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
-                        <h3> No </h3>
-                    </ReversedRadioButton>
-                </RadioGroup>
+
+                {q5 === "yes" ?
+                    <div>
+                        <h1> 
+                            5.1. If you choose Yes in Question 5, How often?
+                        </h1>
+                        <TextField onChange={ onChangeQ51 } margin="normal" className="textArea" inputProps={{style: {fontSize: 25}}} InputLabelProps={{style: {fontSize: 25}}} />
+                        
+                        <h1> 
+                            5.2. If you choose Yes in Question 5, Is this automatic?
+                        </h1>
+                        <RadioGroup onChange={ onChangeQ52 } horizontal>
+                            <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                                <h3> Yes </h3>
+                            </ReversedRadioButton>
+                            <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                                <h3> No </h3>
+                            </ReversedRadioButton>
+                        </RadioGroup>
+                    </div>
+                    : null
+                }
             </div>
 
             {/* Back and Next Page Navigation */}

@@ -101,3 +101,15 @@ div.top {
   position: absolute;
   text-align: center;
 }
+
+.questionPrompt {
+  font-size: 1.8em;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

@@ -8,13 +8,26 @@ import { RadioGroup as RadioGroupButton, RadioButton, ReversedRadioButton } from
 
 export function IAPage2() {
     const [seen, setSeen] = useState(false);
+    const [q4, setQ4] = useState("");
+    const [q5, setQ5] = useState("");
+    const [q51, setQ51] = useState("");
   
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-
+    const onChangeQ4 = (e) => {
+        setQ4(e);
+    }
+    
+    const onChangeQ5 = (e) => {
+        setQ5(e);
+    }
+    
+    const onChangeQ51 = (e) => {
+        setQ5(e.target.value);
+        console.log(e);
+        console.log(e.target.value);
     }
     
     return (
@@ -35,12 +48,10 @@ export function IAPage2() {
 
             {/* Questions of the page */}
             <div className="questionContainer">
-                <div className="questionTitles"> 
-                    <h1> 
-                        Question 4. Which of the following are identified by your system?
-                    </h1>
-                </div>
-                <RadioGroupButton onChange={ onChange } horizontal>
+                <h1 className="questionPrompt"> 
+                    4. Which of the following are identified by your system?
+                </h1>
+                <RadioGroupButton onChange={ onChangeQ4 } horizontal>
                     <RadioButton rootColor="black" pointColor="#60a44c" value="a">
                         <h3> Internal Users and processes acting on behalf of them </h3>
                     </RadioButton>
@@ -58,10 +69,10 @@ export function IAPage2() {
                     </RadioButton>
                 </RadioGroupButton>
 
-                <h1> 
-                    [ACQ5] Can you provide proof that each user is authenticated and privileged pior to logging?
+                <h1 className="questionPrompt"> 
+                    5. Can you provide proof that each user is authenticated and privileged pior to logging?
                 </h1>
-                <RadioGroupButton onChange={ onChange } horizontal>
+                <RadioGroupButton onChange={ onChangeQ5 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
                         <h2> Yes </h2>
                     </ReversedRadioButton>
@@ -70,10 +81,16 @@ export function IAPage2() {
                     </ReversedRadioButton>
                 </RadioGroupButton>
 
-                <h1>
-                    [ACQ5.1] If you pick yes on [ACQ5], please upload proofs here:
-                </h1>
-                <Button className="uploadButton" variant="outlined" component="label" > <h3>Upload File</h3> <input type="file" accept="image/*,.pdf" hidden /> </Button>
+                {   q5 === "yes" ?
+                    <div>
+                        <h1 className="questionPrompt">
+                            5.1. If you pick yes on Question 5, please upload proofs here:
+                        </h1>
+                        <Button className="uploadButton" onChange={ onChangeQ51 } variant="outlined" component="label" > <h3>Upload File</h3> <input type="file" accept="image/*,.pdf" hidden /> </Button>
+                    </div>
+                    : null
+                }
+
             </div>
 
             {/* Back and Next Page Navigation */}

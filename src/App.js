@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-
+import React, { useState, useMemo } from "react";
 import Login from "./Login.js";
 import ACMenu from "./QuestionPages/ACQuestions/ACMenu.js";
 import {ACPage1} from "./QuestionPages/ACQuestions/Page1.js";
@@ -25,38 +25,45 @@ import {SIPage2} from "./QuestionPages/SIQuestions/Page2.js";
 import {SIPage3} from "./QuestionPages/SIQuestions/Page3.js";
 import Dashboard from "./Dashboard.js";
 import SideBar from './Components/SideBar';
+import {UserContext} from './UserContext';
+import {Admin} from './Admin';
 
 export function App() {
-    return (
-        // Imported from react-dom-router, use to redirect to different pages of the quiz
-        <BrowserRouter>
+  const [user, setUser] = useState(null);
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+
+
+  return (
+      // Imported from react-dom-router, use to redirect to different pages of the quiz
+    <BrowserRouter>
+      <UserContext.Provider value={value}>
         <SideBar/>
-        <Switch>
-          <Route path="/dashboard" component={Dashboard} />
-          <Route exact path="/" component={Login} />
-          <Route path="/acmenu" component={ACMenu} />
-          <Route path="/ac1" component={ACPage1} />
-          <Route path="/ac2" component={ACPage2} />
-          <Route path="/ac3" component={ACPage3} />
-          <Route path="/ac4" component={ACPage4} />
-          <Route path="/iamenu" component={IAMenu} />
-          <Route path="/ia1" component={IAPage1} />
-          <Route path="/ia2" component={IAPage2} />
-          <Route path="/ia3" component={IAPage3} />
-          <Route path="/ia4" component={IAPage4} />
-          <Route path="/mpmenu" component={MPMenu} />
-          <Route path="/mp1" component={MPPage1} />
-          <Route path="/pemenu" component={PEMenu} />
-          <Route path="/pe1" component={PEPage1} />
-          <Route path="/pe2" component={PEPage2} />
-          <Route path="/scmenu" component={SCMenu} />
-          <Route path="/sc1" component={SCPage1} />
-          <Route path="/sc2" component={SCPage2} />
-          <Route path="/simenu" component={SIMenu} />
-          <Route path="/si1" component={SIPage1} />
-          <Route path="/si2" component={SIPage2} />
-          <Route path="/si3" component={SIPage3} />
-        </Switch>
-      </BrowserRouter>
-    )
+        <Route exact path="/" component={Login} />
+        <Route path="/admin" component={Admin} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/acmenu" component={ACMenu} />
+        <Route path="/ac1" component={ACPage1} />
+        <Route path="/ac2" component={ACPage2} />
+        <Route path="/ac3" component={ACPage3} />
+        <Route path="/ac4" component={ACPage4} />
+        <Route path="/iamenu" component={IAMenu} />
+        <Route path="/ia1" component={IAPage1} />
+        <Route path="/ia2" component={IAPage2} />
+        <Route path="/ia3" component={IAPage3} />
+        <Route path="/ia4" component={IAPage4} />
+        <Route path="/mpmenu" component={MPMenu} />
+        <Route path="/mp1" component={MPPage1} />
+        <Route path="/pemenu" component={PEMenu} />
+        <Route path="/pe1" component={PEPage1} />
+        <Route path="/pe2" component={PEPage2} />
+        <Route path="/scmenu" component={SCMenu} />
+        <Route path="/sc1" component={SCPage1} />
+        <Route path="/sc2" component={SCPage2} />
+        <Route path="/simenu" component={SIMenu} />
+        <Route path="/si1" component={SIPage1} />
+        <Route path="/si2" component={SIPage2} />
+        <Route path="/si3" component={SIPage3} />
+      </UserContext.Provider>
+    </BrowserRouter>
+  )
 }

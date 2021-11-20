@@ -8,13 +8,13 @@ import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
 export function SIPage3() {
     const [seen, setSeen] = useState(false);
-  
+    const [q6, setQ6] = useState('');
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-
+    const onChange = (e) => {
+        setQ6(e);
     }
     
     return (
@@ -36,7 +36,7 @@ export function SIPage3() {
             {/* Questions of the page */}
             <div className="questionContainer">
                 <h1> 
-                    [SIQ6] Are real-time scans of files from external sources conducted as files are downloaded, opened, or executed?
+                    6. Are real-time scans of files from external sources conducted as files are downloaded, opened, or executed?
                 </h1>
                 <RadioGroup onChange={ onChange } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
@@ -56,7 +56,7 @@ export function SIPage3() {
                 </Link>
             </div>
             <div className="button-container">
-                <Link to="/simenu" style={{ textDecoration: 'none' }}>
+                <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                     <Button className="button" variant="outlined" endIcon={<Send />}> <h3>Next</h3> </Button>        
                 </Link>
             </div>

@@ -8,13 +8,22 @@ import { RadioGroup as RadioGroupButton, ReversedRadioButton } from 'react-radio
 
 export function IAPage3() {
     const [seen, setSeen] = useState(false);
+    const [q6, setQ6] = useState("");
+    const [q61, setQ61] = useState("");
+    const [q7, setQ7] = useState("");
   
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-
+    const onChangeQ6 = (e) => {
+        setQ6(e);
+    }
+    const onChangeQ61 = (e) => {
+        setQ61(e.target.value);
+    }
+    const onChangeQ7 = (e) => {
+        setQ7(e);
     }
     
     return (
@@ -35,10 +44,10 @@ export function IAPage3() {
 
             {/* Questions of the page */}
             <div className="questionContainer">
-                <h1> 
-                    [ACQ6] Can you provide proof that each user can only process only what is required based upon their assigned user role?
+                <h1 className="questionPrompt"> 
+                    6. Can you provide proof that each user can only process only what is required based upon their assigned user role?
                 </h1>
-                <RadioGroupButton onChange={ onChange } horizontal>
+                <RadioGroupButton onChange={ onChangeQ6 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
                         <h2> Yes </h2>
                     </ReversedRadioButton>
@@ -47,15 +56,20 @@ export function IAPage3() {
                     </ReversedRadioButton>
                 </RadioGroupButton>
 
-                <h1>
-                    [ACQ6.1] If you pick yes on [ACQ6], please upload proofs here:
-                </h1>
-                <Button className="uploadButton" variant="outlined" component="label" > <h3>Upload File</h3> <input type="file" accept="image/*,.pdf" hidden /> </Button>
+                {   q6 === "yes" ?
+                    <div>
+                        <h1 className="questionPrompt">
+                            6.1. If you pick yes on Question 6, please upload proofs here:
+                        </h1>
+                        <Button onChange={ onChangeQ61 } className="uploadButton" variant="outlined" component="label" > <h3>Upload File</h3> <input type="file" accept="image/*,.pdf" hidden /> </Button>
+                    </div>
+                    : null
+                }
 
-                <h1> 
-                    [ACQ7] Are passwords stored in encryption format while at rest?
+                <h1 className="questionPrompt"> 
+                    7. Are passwords stored in encryption format while at rest?
                 </h1>
-                <RadioGroupButton onChange={ onChange } horizontal>
+                <RadioGroupButton onChange={ onChangeQ7 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
                         <h2> Yes </h2>
                     </ReversedRadioButton>

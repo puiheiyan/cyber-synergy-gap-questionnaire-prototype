@@ -8,13 +8,19 @@ import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
 export function ACPage2() {
     const [seen, setSeen] = useState(false);
+    const [q2, setQ2] = useState("");
+    const [q21, setQ21] = useState(false);
   
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-        
+    const onChangeQ2 = (e) => {
+        setQ2(e);
+    }
+    
+    const onChangeQ21 = (e) => {
+        setQ21(e);
     }
     
     return (
@@ -35,29 +41,33 @@ export function ACPage2() {
 
             {/* Questions of the page */}
             <div className="questionContainer">
-                <h1> 
-                    [ACQ2] How do you limit information system access to the types of transactions and functions that authorized users are permitted to execute (roles, access privileges)?
+                <h1 className="questionPrompt"> 
+                    2. How do you limit information system access to the types of transactions and functions that authorized users are permitted to execute (roles, access privileges)?
                 </h1>
-                <RadioGroup onChange={ onChange } horizontal>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                <RadioGroup onChange={ onChangeQ2 } horizontal>
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
                         <h3> (a) There are no restrictions on access to information systems </h3>
                     </ReversedRadioButton>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="b">
                         <h3> (b) Transactions and functions authorized users are permitted to execute are defined  </h3>
                     </ReversedRadioButton>
                 </RadioGroup>
 
-                <h1> 
-                    [ACQ2.1] If you chose (b) in [ACQ2], Is system access limited to the defined transactions and functions for authorized users?
-                </h1>
-                <RadioGroup onChange={ onChange } horizontal>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
-                        <h3> Yes </h3>
-                    </ReversedRadioButton>
-                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
-                        <h3> No  </h3>
-                    </ReversedRadioButton>
-                </RadioGroup>
+                {  q2 === "b" ?
+                <div>
+                    <h1 className="questionPrompt"> 
+                        2.1 If you choose (b) in Question 2, Is system access limited to the defined transactions and functions for authorized users?
+                    </h1>
+                    <RadioGroup onChange={ onChangeQ21 } horizontal>
+                        <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="yes">
+                            <h3> Yes </h3>
+                        </ReversedRadioButton>
+                        <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="no">
+                            <h3> No  </h3>
+                        </ReversedRadioButton>
+                    </RadioGroup>
+                </div>
+                : null}
             </div>
 
             {/* Back and Next Page Navigation */}

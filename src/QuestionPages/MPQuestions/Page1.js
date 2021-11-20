@@ -8,13 +8,14 @@ import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 
 export function MPPage1() {
     const [seen, setSeen] = useState(false);
-  
+    const [q1, setQ1] = useState("");
+
     const togglePop = () => {
       setSeen(!seen)
     };
 
-    const onChange = () => {
-
+    const onChangeQ1 = (e) => {
+        setQ1(e);
     }
     
     return (
@@ -36,9 +37,9 @@ export function MPPage1() {
             {/* Questions of the page */}
             <div className="questionContainer">
                 <h1> 
-                    [MPQ1] Do you have policy or procedure created that would ensure CUI information is identified on any media such as laptops, email addresses, are sanitized prior to reuse? And destroyed appropriately if required?
+                    1. Do you have policy or procedure created that would ensure CUI information is identified on any media such as laptops, email addresses, are sanitized prior to reuse? And destroyed appropriately if required?
                 </h1>
-                <RadioGroup onChange={ onChange } horizontal>
+                <RadioGroup onChange={ onChangeQ1 } horizontal>
                     <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
                         <h3> No such policy or procedures are in place </h3>
                     </ReversedRadioButton>
@@ -46,7 +47,6 @@ export function MPPage1() {
                         <h3> System media containing Federal Contract information, including CUI as appropriate, is sanitized before reuse, or destroyed and disposed of if necessary  </h3>
                     </ReversedRadioButton>
                 </RadioGroup>
-
             </div>
 
             {/* Back and Next Page Navigation */}
