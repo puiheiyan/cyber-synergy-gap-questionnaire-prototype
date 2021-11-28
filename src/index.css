@@ -35,7 +35,7 @@ div.questionContainer {
 }
 
 div.infoButton {
-  top: 10%;
+  top: 13%;
   right: 2%;
   position: absolute;
 }
@@ -95,7 +95,7 @@ div.infoButton {
 }
 
 div.top {
-  top: 5%;
+  top: 10%;
   left: 15%;
   right: 15%;
   position: absolute;
@@ -113,3 +113,66 @@ div.top {
 .success {
   color: green;
 }
+
+body {
+  background-color: #f3f3f3;
+}
+
+.ScrollingDiv {
+  overflow-y: scroll;
+  height:400px;
+  top: 20%;
+  left: 13%;
+  right: 13%;
+  height: 75%;
+  position: absolute;
+  background-color: white;
+  border-width: 2px;
+  border-color: black;
+  padding-bottom: 10px;
+  border-radius: 10px;
+}
+
+.ScrollingDiv::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.ScrollingDiv::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.ScrollingDiv::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #60a44c;
+}
+
+.qContainer {
+  top: 10%;
+  left: 15%;
+  right: 15%;
+  height: 80%;
+  position: absolute;
+  text-align: left;
+  padding: 20px;
+}
+
+.submit-button-container {
+  position: fixed;
+  bottom: 5%;
+  right: 3%;
+}
+
+.bottomPadding {
+  height: 120px;
+  display: inline-flex; 
+  width: 100%;
+  text-align: right;
+}
+

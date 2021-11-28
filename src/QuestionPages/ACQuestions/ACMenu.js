@@ -19,7 +19,7 @@ export default class ACMenu extends React.Component {
           </Link>
         </div>
         <div className="button-container">
-          <Link to="/ac1" style={{ textDecoration: 'none' }}> 
+          <Link to="/acquizpage" style={{ textDecoration: 'none' }}> 
             <Button variant="outlined" endIcon={<Send />}> <h3>Start</h3> </Button>        
           </Link>
         </div>

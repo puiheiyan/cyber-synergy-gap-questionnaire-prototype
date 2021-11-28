@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom';
 import logo from "./resources/images/logo.png";
 import { Link } from 'react-router-dom';
 import {UserContext} from './UserContext';
+import axios from 'axios';
 
 const theme = createTheme();
 
@@ -20,27 +21,41 @@ export default function Login() {
   const [valid, setValid] = useState("");
   const [admin, setAdmin] = useState(false);
 
-  const handleSubmit = (event) => {
+
+  const contains = async (email, password) => {
+    const userLists = await axios.get('http://localhost:4001/users');
+    const arr = userLists.data;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].email === email) {
+        return arr[i]._id;
+      }
+    }
+    return null;
+  }
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-    console.log({
-      email,
-      password,
-    });
-    if (email === "admin@gmail.com") {
-      setAdmin("true");
-      const role = "Admin";
-      setUser({email, password, role});
-      setValid("true")
-    } else if (email === "error@gmail.com") {
-      setValid("false");
-    } else {
-      const role = "User";
-      setUser({email, password, role});
-      setValid("true")
+    const loginInfo = {email, password};
+    const id = await contains(email, password);
+    if (id !== null) {
+      axios.post('http://localhost:4001/users/login', loginInfo)
+        .then(res => {
+          setValid("true");
+          const tokens = res.data.token;
+          const refreshTokens = res.data.refreshToken;
+          const userStorage = {id, email, tokens, refreshTokens};
+          setUser(userStorage);
+          localStorage.clear();
+          localStorage.setItem("user", JSON.stringify(userStorage));
+        }).catch(err => {
+          setValid("false");
+          console.log(err);
+        });
     }
+
   };
 
 

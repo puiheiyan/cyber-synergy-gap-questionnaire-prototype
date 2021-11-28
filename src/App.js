@@ -2,10 +2,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import React, { useState, useMemo } from "react";
 import Login from "./Login.js";
 import ACMenu from "./QuestionPages/ACQuestions/ACMenu.js";
-import {ACPage1} from "./QuestionPages/ACQuestions/Page1.js";
-import {ACPage2} from "./QuestionPages/ACQuestions/Page2.js";
-import {ACPage3} from "./QuestionPages/ACQuestions/Page3.js";
-import {ACPage4} from "./QuestionPages/ACQuestions/Page4.js";
+import {ACQuizPage} from './QuestionPages/ACQuestions/ACQuizPage';
 import IAMenu from "./QuestionPages/IAQuestions/IAMenu.js";
 import {IAPage1} from "./QuestionPages/IAQuestions/Page1.js";
 import {IAPage2} from "./QuestionPages/IAQuestions/Page2.js";
@@ -23,7 +20,7 @@ import SIMenu from "./QuestionPages/SIQuestions/SIMenu.js";
 import {SIPage1} from "./QuestionPages/SIQuestions/Page1.js";
 import {SIPage2} from "./QuestionPages/SIQuestions/Page2.js";
 import {SIPage3} from "./QuestionPages/SIQuestions/Page3.js";
-import Dashboard from "./Dashboard.js";
+import {Dashboard} from "./Dashboard.js";
 import SideBar from './Components/SideBar';
 import {UserContext} from './UserContext';
 import {Admin} from './Admin';
@@ -42,10 +39,7 @@ export function App() {
         <Route path="/admin" component={Admin} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/acmenu" component={ACMenu} />
-        <Route path="/ac1" component={ACPage1} />
-        <Route path="/ac2" component={ACPage2} />
-        <Route path="/ac3" component={ACPage3} />
-        <Route path="/ac4" component={ACPage4} />
+        <Route path="/acquizpage" component={ACQuizPage} />
         <Route path="/iamenu" component={IAMenu} />
         <Route path="/ia1" component={IAPage1} />
         <Route path="/ia2" component={IAPage2} />

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './SideBar.css';
@@ -10,6 +10,7 @@ function Navbar() {
 
   const showSidebar = () => setSidebar(!sidebar);
   const { user, setUser } = useContext(UserContext);
+  console.log(user);
 
   return (
     <>
@@ -22,7 +23,7 @@ function Navbar() {
       </div>
       <div className='navbar__title navbar__item'></div>
       <div className='navbar__item'>User: {user.email} </div>   
-      <div className='navbar__item'>Role: {user.role} </div>
+      <div className='navbar__item'>Role: User </div>
       { user.role === "Admin" ? <div className='navbar__item'> Admin Tab </div> : null}   
       </div>
       : null}
