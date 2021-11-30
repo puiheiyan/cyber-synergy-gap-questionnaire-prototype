@@ -24,6 +24,7 @@ import {Dashboard} from "./Dashboard.js";
 import SideBar from './Components/SideBar';
 import {UserContext} from './UserContext';
 import {Admin} from './Admin';
+import {QuestionComponent} from './Components/QuestionComponent'
 
 export function App() {
   const [user, setUser] = useState(null);
@@ -57,6 +58,7 @@ export function App() {
         <Route path="/si1" component={SIPage1} />
         <Route path="/si2" component={SIPage2} />
         <Route path="/si3" component={SIPage3} />
+        <Route path="/questionpage" component={QuestionComponent} />
       </UserContext.Provider>
     </BrowserRouter>
   )

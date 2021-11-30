@@ -176,3 +176,16 @@ body {
   text-align: right;
 }
 
+.modal {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: black; 
+}
+
+.toggleCompleteness {
+  position: absolute;
+  left: 5%;
+  top: 10%;
+}

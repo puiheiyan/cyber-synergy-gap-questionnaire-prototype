@@ -3,15 +3,40 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './SideBar.css';
 import MenuIcon from '@mui/icons-material/Menu';
-import {UserContext} from '../UserContext';
+import axios from 'axios';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const [role, setRole] = useState('');
+  const saved = localStorage.getItem("user");
+  const user = JSON.parse(saved);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("user");
+    const userData = JSON.parse(saved);
+    async function fetchRole() {
+      if (userData !== null) {
+        if(userData.admin === -1) {
+          setRole("Unverified User");
+        } else if (userData.admin === 0) {
+          setRole("Sub User");
+        } else if (userData.admin === 1) {
+          setRole("Super User");
+        } else if (userData.admin === 2) {
+          setRole("Accessor");
+        } else if (userData.admin === 3) {
+          setRole("CMMC Admin");
+        } else {
+          setRole("No Role");
+        }
+      }
+    }
+    fetchRole();
+  }, [role]);
 
   const showSidebar = () => setSidebar(!sidebar);
-  const { user, setUser } = useContext(UserContext);
   console.log(user);
-
+  
   return (
     <>
       {user ? 
@@ -23,8 +48,7 @@ function Navbar() {
       </div>
       <div className='navbar__title navbar__item'></div>
       <div className='navbar__item'>User: {user.email} </div>   
-      <div className='navbar__item'>Role: User </div>
-      { user.role === "Admin" ? <div className='navbar__item'> Admin Tab </div> : null}   
+      <div className='navbar__item'>Role: {role} </div> 
       </div>
       : null}
       

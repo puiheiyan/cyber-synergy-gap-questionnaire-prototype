@@ -9,15 +9,23 @@ import Info from '@mui/icons-material/Info';
 import PopUp from "../../Components/PopUp";
 import { RadioGroup, ReversedRadioButton } from 'react-radio-buttons';
 import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
+const getAnswer = async (token, qid) => {
+    let config = {
+        headers: {
+            "x-access-token": token,
+        }
+    }
 
-const getAnswer = async (uid, qid) => {
-    const res = await axios.get(`http://localhost:4001/clients/answered/${uid}&${qid}`);
+    const res = await axios.get(`http://localhost:4001/clients/answered/${qid}`, config);
     if (res === null) return res;
     return res.data.answer;
 }
 
-export function ACQuizPage() {
+export function ACQuizPage(props) {
+    const [loading, setLoading] = useState(false);
     // Prompt of the questions
     const [question1, setQuestion1] = useState('');
     const [question11, setQuestion11] = useState('');
@@ -84,7 +92,7 @@ export function ACQuizPage() {
         }
         async function fetchAnswer() {
             if (storedUser === null) return;
-            const Q1Answer = await getAnswer(storedUser.id, 1.001);
+            const Q1Answer = await getAnswer(storedUser.tokens, 1.001);
             if (Q1Answer.includes("a")) {
                 setQ1o1(true);
             }
@@ -97,53 +105,42 @@ export function ACQuizPage() {
             if (Q1Answer.includes("d")) {
                 setQ1o4(true);
             }
-            const Q11Answer = await getAnswer(storedUser.id, 1.001031);
-            console.log(Q11Answer);
+            const Q11Answer = await getAnswer(storedUser.tokens, 1.001031);
             setQ11(Q11Answer);
 
-            const Q12Answer = await getAnswer(storedUser.id, 1.0011);
-            console.log(Q12Answer);
+            const Q12Answer = await getAnswer(storedUser.tokens, 1.0011);
             setQ12(Q12Answer);
 
-            const Q13Answer = await getAnswer(storedUser.id, 1.0012);
-            console.log(Q13Answer);
+            const Q13Answer = await getAnswer(storedUser.tokens, 1.0012);
             setQ13(Q13Answer);
 
-            const Q2Answer = await getAnswer(storedUser.id, 1.002);
-            console.log(Q2Answer);
+            const Q2Answer = await getAnswer(storedUser.tokens, 1.002);
             setQ2(Q2Answer);
 
-            const Q21Answer = await getAnswer(storedUser.id, 1.002021);
-            console.log(Q21Answer);
+            const Q21Answer = await getAnswer(storedUser.tokens, 1.002021);
             setQ21(Q21Answer);
 
-            const Q3Answer = await getAnswer(storedUser.id, 1.003);
-            console.log(Q3Answer);
+            const Q3Answer = await getAnswer(storedUser.tokens, 1.003);
             setQ3(Q3Answer);
 
-            const Q31Answer = await getAnswer(storedUser.id, 1.003031);
-            console.log(Q31Answer);
+            const Q31Answer = await getAnswer(storedUser.tokens, 1.003031);
             setQ31(Q31Answer);
 
-            const Q32Answer = await getAnswer(storedUser.id, 1.003032);
-            console.log(Q32Answer);
+            const Q32Answer = await getAnswer(storedUser.tokens, 1.003032);
             setQ32(Q32Answer);
 
-            const Q33Answer = await getAnswer(storedUser.id, 1.003033);
-            console.log(Q33Answer);
+            const Q33Answer = await getAnswer(storedUser.tokens, 1.003033);
             setQ33(Q33Answer);
 
-            const Q4Answer = await getAnswer(storedUser.id, 1.004);
-            console.log(Q4Answer);
+            const Q4Answer = await getAnswer(storedUser.tokens, 1.004);
             setQ4(Q4Answer);
 
-            const Q41Answer = await getAnswer(storedUser.id, 1.004021);
-            console.log(Q41Answer);
+            const Q41Answer = await getAnswer(storedUser.tokens, 1.004021);
             setQ41(Q41Answer);
 
-            const Q42Answer = await getAnswer(storedUser.id, 1.004022);
-            console.log(Q42Answer);
+            const Q42Answer = await getAnswer(storedUser.tokens, 1.004022);
             setQ42(Q42Answer);
+            setLoading(true);
         }
         fetchQuestion();
         fetchAnswer();
@@ -267,31 +264,34 @@ export function ACQuizPage() {
         if (q12 === "a") {
             q12weight += 4;
         }
-        const q1answer = {uid: id, questionId: 1.001, category: "AC", answer: arr, weight: q1weight, questionType: 1};
-        console.log(q1answer);
-        await axios.post('http://localhost:4001/clients/answer', q1answer);
-        if (!q1o4) {
-            const q11answer = {uid: id, questionId: 1.001031, category: "AC", answer: q11, weight: q11weight, questionType: 0};
-            console.log(q11answer);
-            await axios.post('http://localhost:4001/clients/answer', q11answer);
-        } else {
-            const q12answer = {uid: id, questionId: 1.0011, category: "AC", answer: q12, weight: q12weight, questionType: 0};
-            const q13answer = {uid: id, questionId: 1.0012, category: "AC", answer: q13, weight: 0, questionType: 2};
-            console.log(q12answer);
-            console.log(q13answer);
-            await axios.post('http://localhost:4001/clients/answer', q12answer);
-            await axios.post('http://localhost:4001/clients/answer', q13answer);
+        let config = {
+            headers: {
+                "x-access-token": storedUser.tokens,
+            }
         }
+        const q1answer = {questionId: 1.001, category: "AC", answer: arr, weight: q1weight, questionType: 1};
+        //let data = {questionId: 1.001, category: "AC", answer: arr, weight: q1weight, questionType: 1};
+
+        await axios.post('http://localhost:4001/clients/answer', q1answer, config);
+        if (q1o3) {
+            const q11answer = {questionId: 1.001031, category: "AC", answer: q11, weight: q11weight, questionType: 0};
+            await axios.post('http://localhost:4001/clients/answer', q11answer, config);
+        }
+        const q12answer = {questionId: 1.0011, category: "AC", answer: q12, weight: q12weight, questionType: 0};
+        await axios.post('http://localhost:4001/clients/answer', q12answer, config);
+
+        const q13answer = {questionId: 1.0012, category: "AC", answer: q13, weight: 0, questionType: 2};
+        await axios.post('http://localhost:4001/clients/answer', q13answer, config);
         var q2weight = 0;
         if (q2 === "b") {
             q2weight++;
         }
-        const q2answer = {uid: id, questionId: 1.002, category: "AC", answer: q2, weight: q2weight, questionType: 0};
-        await axios.post('http://localhost:4001/clients/answer', q2answer);
+        const q2answer = {questionId: 1.002, category: "AC", answer: q2, weight: q2weight, questionType: 0};
+        await axios.post('http://localhost:4001/clients/answer', q2answer, config);
         if (q2 === "b") {
             var q21weight = (q21 === "a" ? 3 : 0);
-            const q21answer = {uid: id, questionId: 1.002021, category: "AC", answer: q21, weight: q21weight, questionType: 0};
-            await axios.post('http://localhost:4001/clients/answer', q21answer);
+            const q21answer = {questionId: 1.002021, category: "AC", answer: q21, weight: q21weight, questionType: 0};
+            await axios.post('http://localhost:4001/clients/answer', q21answer, config);
         }
 
         var q3weight = 0;
@@ -304,42 +304,42 @@ export function ACQuizPage() {
             if (q31 === "a") {
                 q31weight = 1;
             }
-            const q31answer = {uid: id, questionId: 1.003031, category: "AC", answer: q31, weight: q31weight, questionType: 0};
+            const q31answer = {questionId: 1.003031, category: "AC", answer: q31, weight: q31weight, questionType: 0};
             
             var q32weight = 0;
             if (q32 === "a") {
                 q32weight = 1;
             }
-            const q32answer = {uid: id, questionId: 1.003032, category: "AC", answer: q32, weight: q32weight, questionType: 0};
+            const q32answer = {questionId: 1.003032, category: "AC", answer: q32, weight: q32weight, questionType: 0};
             
             var q33weight = 0;
             if (q33 === "a") {
                 q33weight = 1;
             }
-            const q33answer = {uid: id, questionId: 1.003033, category: "AC", answer: q33, weight: q33weight, questionType: 0};
-            await axios.post('http://localhost:4001/clients/answer', q31answer);
-            await axios.post('http://localhost:4001/clients/answer', q32answer);
-            await axios.post('http://localhost:4001/clients/answer', q33answer);
+            const q33answer = {questionId: 1.003033, category: "AC", answer: q33, weight: q33weight, questionType: 0};
+            await axios.post('http://localhost:4001/clients/answer', q31answer, config);
+            await axios.post('http://localhost:4001/clients/answer', q32answer, config);
+            await axios.post('http://localhost:4001/clients/answer', q33answer, config);
         }
-        const q3answer = {uid: id, questionId: 1.003, category: "AC", answer: q3, weight: q3weight, questionType: 0};
-        await axios.post('http://localhost:4001/clients/answer', q3answer);
+        const q3answer = {questionId: 1.003, category: "AC", answer: q3, weight: q3weight, questionType: 0};
+        await axios.post('http://localhost:4001/clients/answer', q3answer, config);
 
         var q4weight = 0;
         if (q4 === "b") {
             q4weight = 2;
             var q41weight = (q41 === "a") ? 1 : 0;
-            const q41answer = {uid: id, questionId: 1.004021, category: "AC", answer: q41, weight: q41weight, questionType: 0};
+            const q41answer = {questionId: 1.004021, category: "AC", answer: q41, weight: q41weight, questionType: 0};
             var q42weight = (q42 === "a") ? 1 : 0;
-            const q42answer = {uid: id, questionId: 1.004022, category: "AC", answer: q42, weight: q42weight, questionType: 0};
-            await axios.post('http://localhost:4001/clients/answer', q41answer);
-            await axios.post('http://localhost:4001/clients/answer', q42answer);
+            const q42answer = {questionId: 1.004022, category: "AC", answer: q42, weight: q42weight, questionType: 0};
+            await axios.post('http://localhost:4001/clients/answer', q41answer, config);
+            await axios.post('http://localhost:4001/clients/answer', q42answer, config);
         }
-        const q4answer = {uid: id, questionId: 1.004, category: "AC", answer: q4, weight: q4weight, questionType: 0};
-        await axios.post('http://localhost:4001/clients/answer', q4answer);
-        const q41answer = {uid: id, questionId: 1.004021, category: "AC", answer: q41, weight: q41weight, questionType: 0};
-        await axios.post('http://localhost:4001/clients/answer', q41answer);
-        const q42answer = {uid: id, questionId: 1.004022, category: "AC", answer: q42, weight: q42weight, questionType: 0};
-        await axios.post('http://localhost:4001/clients/answer', q42answer);
+        const q4answer = {questionId: 1.004, category: "AC", answer: q4, weight: q4weight, questionType: 0};
+        await axios.post('http://localhost:4001/clients/answer', q4answer, config);
+        const q41answer = {questionId: 1.004021, category: "AC", answer: q41, weight: q41weight, questionType: 0};
+        await axios.post('http://localhost:4001/clients/answer', q41answer, config);
+        const q42answer = {questionId: 1.004022, category: "AC", answer: q42, weight: q42weight, questionType: 0};
+        await axios.post('http://localhost:4001/clients/answer', q42answer, config);
     }
 
     return (
@@ -354,12 +354,16 @@ export function ACQuizPage() {
                 <div className="top">
                     <h1>Access Control Questions</h1>
                 </div>
-                <div className="submit-button-container">       
+                <div className="submit-button-container"> 
                     <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                         <Button onClick={handleSubmit} className="button" variant="outlined" endIcon={<Send />}> Submit </Button>        
                     </Link>
                 </div>
                 <div className="ScrollingDiv">
+                    { !loading ? 
+                    <div className="top">
+                        <CircularProgress style={{'color': 'green'}}/>
+                    </div> :
                     <div className="qContainer">
                         <h3>1. {question1}</h3>
                         <FormGroup>
@@ -382,21 +386,21 @@ export function ACQuizPage() {
                             </RadioGroup>
                         </div>
                         : null}
-                        {q1o4 === true ?
-                            <div>
-                                <h3>1.2 {question12} </h3>
-                                <RadioGroup horizontal onChange={onChangeQ12} value={q12}>
-                                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
-                                        <h4> Yes </h4>
-                                    </ReversedRadioButton>
-                                    <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="b">
-                                        <h4> No  </h4>
-                                    </ReversedRadioButton>
-                                </RadioGroup>
-                                <h3>1.3 {question13} </h3>
-                                <TextField value={q13} onChange={onChangeQ13} margin="normal" variant="outlined" label="Question 1.3" className="textArea" inputProps={{style: {fontSize: 20}}}/>
-                            </div>
-                        : null}
+                        
+                        <div>
+                            <h3>1.2 {question12} </h3>
+                            <RadioGroup horizontal onChange={onChangeQ12} value={q12}>
+                                <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
+                                    <h4> Yes </h4>
+                                </ReversedRadioButton>
+                                <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="b">
+                                    <h4> No  </h4>
+                                </ReversedRadioButton>
+                            </RadioGroup>
+                            <h3>1.3 {question13} </h3>
+                            <TextField value={q13} onChange={onChangeQ13} margin="normal" variant="outlined" label="Question 1.3" className="textArea" inputProps={{style: {fontSize: 20}}}/>
+                        </div>
+                        
                         <h3>2. {question2} </h3>
                         <RadioGroup onChange={ onChangeQ2 } horizontal value={q2}>
                             <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
@@ -407,7 +411,7 @@ export function ACQuizPage() {
                             </ReversedRadioButton>
                         </RadioGroup>
                         
-                        { q2 === "b" ?<div>
+                        { q2 === "b" ? <div>
                             <h3>2.1 {question21} </h3>
                             <RadioGroup onChange={ onChangeQ21 } horizontal value={q21}>
                                 <ReversedRadioButton rootColor="black" pointColor="#60a44c" value="a">
@@ -501,6 +505,7 @@ export function ACQuizPage() {
                         : null}
                         <div className="bottomPadding"/>
                     </div>
+                    }
                 </div>
             </div>
         </form>

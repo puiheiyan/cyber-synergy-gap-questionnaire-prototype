@@ -17,12 +17,11 @@ import axios from 'axios';
 const theme = createTheme();
 
 export default function Login() {
-  const { user ,setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [valid, setValid] = useState("");
-  const [admin, setAdmin] = useState(false);
 
 
-  const contains = async (email, password) => {
+  const contains = async (email) => {
     const userLists = await axios.get('http://localhost:4001/users');
     const arr = userLists.data;
     for (let i = 0; i < arr.length; i++) {
@@ -39,25 +38,26 @@ export default function Login() {
     const email = data.get('email');
     const password = data.get('password');
     const loginInfo = {email, password};
-    const id = await contains(email, password);
+    const id = await contains(email);
     if (id !== null) {
-      axios.post('http://localhost:4001/users/login', loginInfo)
-        .then(res => {
-          setValid("true");
-          const tokens = res.data.token;
-          const refreshTokens = res.data.refreshToken;
-          const userStorage = {id, email, tokens, refreshTokens};
-          setUser(userStorage);
-          localStorage.clear();
-          localStorage.setItem("user", JSON.stringify(userStorage));
-        }).catch(err => {
-          setValid("false");
-          console.log(err);
-        });
+      const login = await axios.post('http://localhost:4001/users/login', loginInfo);
+      if (login.status === 200) {
+        setValid("true");
+        const tokens = login.data.token;
+        const refreshTokens = login.data.refreshToken;
+        const adminData = await axios.get(`http://localhost:4001/users/id/${id}`);
+        const admin = adminData.data.admin;
+        const userStorage = {id, email, admin, tokens, refreshTokens};
+        setUser(userStorage);
+        localStorage.clear();
+        localStorage.setItem("user", JSON.stringify(userStorage));
+      } else {
+        setValid("false");
+      }
+    } else {
+      setValid("false");
     }
-
   };
-
 
   return (
     <ThemeProvider theme={theme}>

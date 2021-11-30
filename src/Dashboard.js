@@ -6,10 +6,16 @@ import { Link } from 'react-router-dom';
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 export function Dashboard(props) {
+  const [loading, setLoading] = useState(false);
   const [level, setLevel] = useState(1);
+  const [complete, setComplete] = useState(false);
   const [acPercentage, setAcPercentage] = useState(0);
+  const [acCompletePercentage, setAcCompletePercentage] = useState(0);
   const [iaPercentage, setIaPercentage] = useState(0);
   const [mpPercentage, setMpPercentage] = useState(0);
   const [pePercentage, setPePercentage] = useState(0);
@@ -18,8 +24,23 @@ export function Dashboard(props) {
   const saved = localStorage.getItem("user");
   const storedUser = JSON.parse(saved);
   
-  const retrievePercentage = async (category, level, user_id) => {
-    const res = await axios.get(`http://localhost:4001/clients/correctness/${category}&${level}&${user_id}`);
+  const retrieveCorrectnessPercentage = async (category, level) => {
+    let config = {
+      headers: {
+          "x-access-token": storedUser.tokens,
+      }
+    } 
+    const res = await axios.get(`http://localhost:4001/clients/correctness/${category}&${level}`, config);
+    return res.data.percent;
+  }
+
+  const retrieveCopmpletePercentage = async (category, level) => {
+    let config = {
+      headers: {
+          "x-access-token": storedUser.tokens,
+      }
+    } 
+    const res = await axios.get(`http://localhost:4001/clients/completion/${category}&${level}`, config);
     return res.data.percent;
   }
 
@@ -27,18 +48,21 @@ export function Dashboard(props) {
     async function fetchMyAPI() {
       const id = storedUser.id;
       console.log(id);
-      const acPercent = await retrievePercentage("AC", 1, id);
-      const iaPercent = await retrievePercentage("IA", 1, id);
-      const mpPercent = await retrievePercentage("MP", 1, id);
-      const pePercent = await retrievePercentage("PE", 1, id);
-      const scPercent = await retrievePercentage("SC", 1, id);
-      const siPercent = await retrievePercentage("SI", 1, id);
+      const acPercent = await retrieveCorrectnessPercentage("AC", 1);
+      const acCompletePercent = await retrieveCopmpletePercentage("AC", 1);
+      const iaPercent = await retrieveCorrectnessPercentage("IA", 1);
+      const mpPercent = await retrieveCorrectnessPercentage("MP", 1);
+      const pePercent = await retrieveCorrectnessPercentage("PE", 1);
+      const scPercent = await retrieveCorrectnessPercentage("SC", 1);
+      const siPercent = await retrieveCorrectnessPercentage("SI", 1);
       setAcPercentage(acPercent);
+      setAcCompletePercentage(acCompletePercent);
       setIaPercentage(iaPercent);
       setMpPercentage(mpPercent);
       setPePercentage(pePercent);
       setScPercentage(scPercent);
       setSiPercentage(siPercent);
+      setLoading(true);
     }
     fetchMyAPI()
   }, [])
@@ -57,6 +81,10 @@ export function Dashboard(props) {
     } else {
       return '#47D13D';
     } 
+  }
+
+  const handleComplete = (e) => {
+    setComplete(!complete);
   }
 
   const handleLevel = (event) => {
@@ -82,11 +110,20 @@ export function Dashboard(props) {
         </Select>
       </FormControl>
     </div>
+    <div className="toggleCompleteness">
+      <FormControlLabel control={<Checkbox checked={complete} onChange={handleComplete}/>} label={<span style={{ fontSize: '1rem', fontWeight: 'bold' }}>{ "Show Completion Mark" }</span>} sx={{ '& .MuiSvgIcon-root': { fontSize: 20 } }}/>
+    </div>
     {/* List of progress bars that tracks the progress of each user */}
+    {
+    !loading ? 
+      <div className="top">
+        <CircularProgress style={{'color': 'green'}}/>
+      </div>
+    :
     <div className="pie-container">
       <div className="progress-bar">
         <Link to='/acmenu'>
-          <Pie percentage={acPercentage} colour={GenerateColorFromPercentage(acPercentage)} />
+          <Pie percentage={!complete ? acPercentage : acCompletePercentage} colour={!complete ? GenerateColorFromPercentage(acPercentage) : GenerateColorFromPercentage(acCompletePercentage)} />
         </Link>
         <h1><b> AC </b></h1>
       </div>
@@ -121,12 +158,16 @@ export function Dashboard(props) {
         <h1><b> SI </b></h1>
       </div>
     </div>
-    <Link to="/admin">
+    }
+    {/* <Link to="/admin">
       <Button>Go to admin page</Button>
     </Link>
     <Link to="/acquizpage">
       <Button>Go to test ac quiz page</Button>
     </Link>
+    <Link to="/questionpage">
+      <Button>Test out question Page mapping</Button>
+    </Link> */}
   </>
   );
 }
