@@ -1,5 +1,15 @@
 # Cyber Synergy Gap Questionnaire Prototype
 
+## To-do list  
+* Update PE, SC, SI, MP
+* File handling
+
+## Change log 
+* Nov 29
+  - IA question pages are updated to scrollable
+* Nov 26  
+  - a new look for the AC section is created
+ 
 ## Demo
 The demo is [here](https://google.com).
 
